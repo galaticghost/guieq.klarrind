@@ -22,6 +22,7 @@
     //afins
     echo ", dia " . date("d") . " do mês de " . $meses[$mes-1] . " do ano de " . date("Y");
 
-
+    echo "<br> Data em inglês: <br>";
+    echo "Good Morning! Today is " . date("l") . " " . date("d") . " " . date("F") . " of " . date("Y");
 ?>
 <br>
