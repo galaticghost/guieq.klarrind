@@ -11,8 +11,7 @@
             break;
         default:
             echo "$semana[$i]";
-            $dia = $semana[$i];
-            if ($dia == "Terça" or $dia == "Segunda" or $dia == "Quinta" or $dia == "Quarta" or $dia == "Sexta") {
+            if ($semana[$i] == "Terça" or $semana[$i] == "Segunda" or $semana[$i] == "Quinta" or $semana[$i] == "Quarta" or $semana[$i] == "Sexta") {
                 echo "-feira";
             }
     }
