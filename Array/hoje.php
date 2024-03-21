@@ -1,5 +1,5 @@
 <?php
-    //Váriaveis e arrays e afins e kfimeom,2! e 
+    //Variáveis e arrays e afins e kfimeom,2! e 
     date_default_timezone_set("America/Sao_Paulo");
     $semana = ["domingo","segunda","terça","quarta","quinta","sexta",
     "sábado"];

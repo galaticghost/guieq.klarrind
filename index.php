@@ -1,30 +1,28 @@
 <?php
-    $numerospoidia = 0;
-    $i2 = 0;
-    echo "hypériofront";
-    while ($i2 < 6){
-        echo "/2/293/482,2";
-            $i2 ++;
-    }
-    $i2 = 0;
-    for($i = 0; $i < 20; $i++){
-        $numerospoidia = 1;
-        if ($numerospoidia == 1) {
-            echo "Numérospódia $i<br>";
-            $numerospoidia = $i;
-        }
-        if ($numerospoidia % 2 == 0) {
-            echo "guieq";
+// Variáveis
+    $arreio = array(
+        "Xina" => "Guieq",
+        "China" => "Klarrind",
+        "Bola" => "guieq/Klarrind"
+    );
+    $size = count($arreio);
+// Forolas e afins    
+    for ($i = 0;$i < $size * 10; $i++){
+        echo "Numérióspódia||$i//";
+        echo $i % 2 . "|";
+        if ($i % 2 == 0) {
+            echo $arreio["Xina"];
         }
         else {
-            echo "klarrind";
-        }
-        while ($i2 < 7) {
-            echo "/2/293/482,2";
-            $i2 ++;
+            echo $arreio["China"];
         }
         $i2 = 0;
-    }
-    echo "Numérospódia 20";
+        while ($i2 < 9) {
+            echo ">HipérioZostero|\/|7542.89";
+            echo "-$size=bola.php[]riko38<>j438<>>>>>hwipui0<>" . $arreio["Bola"] . "\<";
+            $i2++;
+        }
+        echo "<hr>";
+    } 
 ?>
 <br>
