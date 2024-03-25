@@ -7,7 +7,13 @@
     function RaioArea($x){
         return getPI() * pow($x, 2);
     }
-    $bola = RaioArea(3);
-    echo "A área do raio 3 é de " . $bola;
+    if (isset($_GET["y"])){
+        $y = $_GET["y"];
+        $bola = RaioArea($y);
+        echo "A área do raio $y é de " . $bola;
+    }
+    else {
+        echo "Sem input";
+    }
 ?>
 <br>
