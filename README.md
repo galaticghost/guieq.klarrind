@@ -6,3 +6,6 @@ agora estou modificando com o vim. Eu não sei sair do vim. help.:wq
 "Redame"
 "ad"
 brigado nano
+
+
+ZOOWINIS!!!!!!
