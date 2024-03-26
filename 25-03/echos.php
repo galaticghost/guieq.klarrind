@@ -1,7 +1,7 @@
 <?php
 // Testes com funções
     function getPI(){
-    return pi();
+        return pi();
     }
 
     function RaioArea($x){

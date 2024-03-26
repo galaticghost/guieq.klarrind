@@ -1,6 +1,5 @@
 <?php
-    function calcFacto($x){
-        $y = 1;
+    function calcFacto($x, $y){
         for ($i = 1; $i < ($x + 1); $i++){
             $y = $y * $i;
         }
@@ -9,7 +8,7 @@
 
     if (isset($_GET["x"])) {
         $v = $_GET["x"];
-        $bola = calcFacto($v);
+        $bola = calcFacto($v, 1);
         echo "O fatorial de $v é $bola";
     }
     else {
