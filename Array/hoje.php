@@ -22,5 +22,3 @@
 
     echo "<br> Data em inglês <br>";
     echo "Good Morning! Today is " . date("l") . " " . date("d") . " " . date("F") . " of " . date("Y") . ".";
-?>
-<br>

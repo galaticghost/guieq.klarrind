@@ -1,6 +1,5 @@
 <?php
 //base 64
-    
     //verificação
     if(isset($_GET["c"]) and isset($_GET["s"])){
         $c = $_GET["c"];
@@ -24,5 +23,3 @@
         echo "Sem input";
     }
 
-?>
-<br>

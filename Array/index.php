@@ -20,6 +20,3 @@
     date_default_timezone_set("America/Sao_Paulo");
     $hoje = date(", d/m/y - H:i:s ");
     echo "<br>" . "Hoje é " . $hoje; 
-
-?>
-<br>

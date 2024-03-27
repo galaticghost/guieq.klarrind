@@ -18,5 +18,3 @@
 //Ecos
     echo media2($n1,$n2,$n3,$n4);
     
-?>
-<br>

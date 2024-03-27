@@ -23,5 +23,3 @@
     impressor();
     echo "Valor pi: " . getPI() . "<br>";
     echo "<hr>Grande" . xina(21);
-?>
-<br>

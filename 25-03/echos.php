@@ -15,5 +15,3 @@
     else {
         echo "Sem input";
     }
-?>
-<br>

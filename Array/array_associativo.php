@@ -38,5 +38,3 @@
     $s = date("D");
     $m = date("n");
     echo $semana[$s] . "<br>O mês de hoje é  " . $mes[$m] ;
-?>
-<br>

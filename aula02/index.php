@@ -8,6 +8,3 @@
     }
     $carros[0] = "uno";
     echo $carros[0];
-?>
-
-<br>

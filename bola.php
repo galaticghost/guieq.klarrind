@@ -12,5 +12,3 @@
     foreach($paises as $as) {
         echo "$as<br>";
     }
-?>
-<br>

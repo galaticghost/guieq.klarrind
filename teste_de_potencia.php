@@ -4,5 +4,3 @@
     echo "$n1 <br>";
     echo pow($n1, 2) . "<br>";
     echo $n2;
-
-?>

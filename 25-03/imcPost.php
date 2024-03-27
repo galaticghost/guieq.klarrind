@@ -28,5 +28,3 @@
         }
     }
     echo imc($peso, $altura, $imc);
-?>
-<br>
