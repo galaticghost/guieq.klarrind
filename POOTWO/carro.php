@@ -17,5 +17,9 @@
             echo "<br>Marca: " . $this->marca;
             echo "<br>Modelo: " . $this->modelo;
             echo "<br>Cor: " . $this->cor;
+            echo "<hr>";
+        }
+        public function vender($valor){
+            echo "<h3>" . $this->marca . " " . $this->modelo . " vendido por R$:" . $valor . "</h3><br>";
         }
     }
