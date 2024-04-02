@@ -3,4 +3,4 @@
 
     $car1 = new carro("2018", "Fiat", "Doblo", "Vermelho"); 
     
-    echo status($car1);
+    $car1->status();

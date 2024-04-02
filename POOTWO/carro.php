@@ -19,11 +19,3 @@
             echo "<br>Cor: " . $this->cor;
         }
     }
-    public function status(){
-        echo "<h2>Dados do Veículo</h2>";
-        echo "<br>Ano: " . $this->ano;
-        echo "<br>Marca: " . $this->marca;
-        echo "<br>Modelo: " . $this->modelo;
-        echo "<br>Cor: " . $this->cor;
-    }
-
