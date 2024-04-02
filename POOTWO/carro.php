@@ -11,11 +11,11 @@
             $this->modelo = $modelo;
             $this->cor = $cor;
         }
-        public function status(){
+        public function status($carro){
             echo "<h2>Dados do Veículo</h2>";
-            echo "<br>Ano: " . $this->ano;
-            echo "<br>Marca: " . $this->marca;
-            echo "<br>Modelo: " . $this->modelo;
-            echo "<br>Cor: " . $this->cor;
+            echo "<br>Ano: " . $carro->ano;
+            echo "<br>Marca: " . $carro->marca;
+            echo "<br>Modelo: " . $carro->modelo;
+            echo "<br>Cor: " . $carro->cor;
         }
     }
