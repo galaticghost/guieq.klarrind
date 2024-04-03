@@ -4,8 +4,8 @@
         public $id;
         public $name;
         
-        public function __construct($id = 0, $name = "Tangamandápio"){
-            $this->id = $id;
+        public function __construct($name = "Tangamandápio"){
+            $this->id = null;
             $this->name = $name;
         }
  
