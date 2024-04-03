@@ -4,5 +4,5 @@
     
     echo"<h2> Total de veículos:" . count($carros) . "</h2>";
     foreach($carros as $carro){
-        status($carro);
+        $carro->status($carro);
     }
