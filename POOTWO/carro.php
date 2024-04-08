@@ -1,5 +1,5 @@
 <?php
-    class carro {
+    class Carro {
         public $ano;
         public $marca;
         public $modelo;
