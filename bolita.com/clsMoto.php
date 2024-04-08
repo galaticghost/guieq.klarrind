@@ -12,7 +12,7 @@ class Moto extends Veiculo{
     }
     public function ligar(){
         parent:: ligar();
-        echo "<br>Moto ligada";
+        echo "Moto ligada";
         /*if ($this->partidaEletrica == true) {
         }*/
     }

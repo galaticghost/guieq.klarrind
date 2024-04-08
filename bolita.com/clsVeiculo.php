@@ -14,6 +14,7 @@ class Veiculo {
     }
     public function ligar(){
         echo "Veículo ligado";
+        echo "<br>Modelo: " . $this->modelo . "<br>";
     }
     public function acelerar($velocidade){
         if ($velocidade > 0) {

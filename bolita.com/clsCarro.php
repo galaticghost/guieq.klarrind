@@ -9,6 +9,6 @@ class Carro extends Veiculo {
     }
     public function ligar(){
         parent:: ligar();
-        echo "<br>Carro ligado";
+        echo "Carro ligado<hr>";
     }
 }
