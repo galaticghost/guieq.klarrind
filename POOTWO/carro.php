@@ -13,7 +13,7 @@
             $this->cor = $cor;
             $this->tipo = $tipo;
         }
-        public function status($carro){
+        public function status(){
             echo "<h2>Dados do Veículo</h2>";
             echo "Ano: " . $this->ano;
             echo "<br>Marca: " . $this->marca;
