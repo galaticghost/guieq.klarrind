@@ -14,3 +14,11 @@ $c1->ligar();
 
 $m1 = new Moto ("Honda","Twister",250,true);
 $m1->ligar();
+
+echo "<br>Velocidade do veículo: " . $v1->velocidade;
+$v1->acelerar(100);
+echo "<br>Velocidade do veículo: " . $v1->velocidade;
+
+echo "<br>Velocidade do carro: " . $c1->acelerar(50);
+
+echo "<br>Velocidade do carro: " . $c1->frear(50);

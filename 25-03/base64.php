@@ -20,6 +20,7 @@
         echo "Sem input de texto";
     }
     else {
-        echo "Sem input";
+        echo "C recebe e ou d<br>";
+        echo "s recebe mensagem";
     }
 
