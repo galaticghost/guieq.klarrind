@@ -17,11 +17,12 @@ class Xinamen {
 	}
 }
 
-if (isset($base64)) {
+if (isset($_GET["base64"])) {
 	$base64 = $_GET["base64"];
 	$x1 = new Xinamen ("Bola","sim",$base64);
 	echo "Nome: " . $x1->nome . "<br>";
 	echo base64_decode($x1->mensagem);
+
 }
 else {
 	echo "A mensagem não foi digitada<br>?base64=";
