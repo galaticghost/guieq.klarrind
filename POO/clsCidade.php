@@ -1,6 +1,6 @@
 <?php
     
-    class cidade {
+    class Cidade {
         public $id;
         public $name;
 // Sem id        
