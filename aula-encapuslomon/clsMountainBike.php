@@ -2,12 +2,19 @@
 require_once("clsBicicleta.php");
 
 class MountainBike extends Bicicleta {
-    public $marcha;
+    private $marcha;
     
-    public function __construct(){
-        parent:: __construct();
+    public function __construct($id,$marca,$cor,$marcha){
+        parent:: __construct($id,$marca,$cor);
+        $this->marcha = $marcha;
+    }
+    public function getMarcha(){
+        return $this->marcha;
+    }
+    public function setMarcha($marcha){
+        $this->marcha = $marcha;
     }
     public function mudarMarcha($marcha){
-        echo "Bicicleta na marcha $marcha"; 
+        echo "<br>Bicicleta na marcha $marcha"; 
     }
 }

@@ -6,8 +6,10 @@ class Bicicleta {
     private $marca;
     private $cor;
     
-    public function __construct(){
-                
+    public function __construct($id,$marca,$cor){
+        $this->id = $id;
+        $this->marca = $marca;
+        $this->cor = $cor;
     }
     public function getId(){
         return $this->id;
@@ -27,9 +29,9 @@ class Bicicleta {
         $this->cor = $cor;
     }
     public function andar(){
-        echo "Bicicleta andando";
+        echo "<br>Bicicleta andando";
     }
     public function frear(){
-        echo "Bicicleta parada";
+        echo "<br>Bicicleta parada";
     }
 }
