@@ -2,14 +2,14 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="veiwport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loja - Cidades</title>
 </head>
 <body>
     <h1>Cidades</h1>
-    <form method="post" action="controller/salvarCidade.php">
+    <form method="POST" action="controller/salvarCidade.php">
         <label>Nome: </label>
-        <input type="text" placeholder="Digite o nome da cidade..." name="txtNome">
+        <input type="text" placeholder="Digite o nome da cidade..." name="txtNome" required>
         <br>
         <input type="submit" value="Salvar">
         <input type="reset" value="Limpar">
@@ -38,6 +38,28 @@
             <td><button>Editar</button></td>
             <td><button>Excluir</button></td>
         </tr>
+        <?php
+            if (isset($_REQUEST["nome"])){
+                $nome = $_REQUEST["nome"];
+                echo "<tr>
+                <td>3</td>
+                <td>$nome</td>
+                <td><button>Editar</button></td>
+                <td><button>Excluir</button></td>
+                </tr>";
+            }
+        ?>
     </table>
+
+    <?php
+        if (isset($_REQUEST["nomeVazio"])){
+            echo "<script> alert('O campo nome não pode ser vazio'); </script>";
+        }
+        
+        if (isset($_REQUEST["nome"])){
+            $nome = $_REQUEST["nome"];
+            echo "<script> alert('Cidade $nome cadastrada com sucesso'); </script>";
+        }
+    ?>
 </body>
 </html>
