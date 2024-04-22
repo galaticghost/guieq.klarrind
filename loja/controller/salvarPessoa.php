@@ -13,7 +13,7 @@ else{
     include_once("../model/clsCliente.php");
     include_once("../dao/clsPessoaDAO.php");
 
-    $novaPes = new Pessoa(null, $nome, null, $salario, "tangamandápio");
+    $novaPes = new Pessoa(null, $nome, $dataDeNascimento, $salario, "tangamandápio");
     PessoaDAO::inserir($novaPes);
     header("Location: ../pessoas.php?nome=$nome");
 }
