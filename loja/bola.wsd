@@ -1,0 +1,33 @@
+@startuml bola
+
+title Loja
+
+class Cliente{
+id: int
+nome: str
+dataDeNascimento: date
+salario: double
+cidade: Cidade
+--
++__construct(id,nome,dataDeNascimento,salario,cidade)
+}
+
+class Cidade{
+id: int
+nome: str
+--
++__construct(id,nome)
+}
+
+class Conexao{
+    --
+    -abrir()
+    -fechar()
+    +consultar()
+    +executar()
+    +executarComId
+}
+
+Cidade "0..n" --* "1..1" Cliente
+
+@enduml
