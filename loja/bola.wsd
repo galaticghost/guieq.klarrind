@@ -25,7 +25,7 @@ class Conexao{
     -fechar()
     +consultar()
     +executar()
-    +executarComId
+    +executarComId()
 }
 
 Cidade "0..n" --* "1..1" Cliente
