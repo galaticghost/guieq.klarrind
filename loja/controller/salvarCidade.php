@@ -10,8 +10,7 @@ else{
     include_once("../dao/clsCidadeDAO.php");
     include_once("../model/clsCidade.php");
 
-    $novaCid = new Cidade();
-    $novaCid->nome = $nome;
+    $novaCid = new Cidade(null, $nome);
     CidadeDAO::inserir($novaCid);
     header("Location: ../cidades.php?nome=$nome");
 }

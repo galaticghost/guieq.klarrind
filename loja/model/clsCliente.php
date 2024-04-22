@@ -1,7 +1,7 @@
 <?php
 
 include_once("clsCidade.php");
-class Cliente {
+class Pessoa {
     public $id; //int
     public $nome; //str
     public $dataDeNascimento; //date
