@@ -25,6 +25,28 @@ Class Cidade extends conexao{
 	
 	public function inserir($nome){
 		$sql = "INSERT INTO $this->tabela(nome) VALUES ('$nome');";
-		mysqli_query($this->conn, $sql);
+		//mysqli_query($this->conn, $sql);
+		$result = $this->conn->query($sql)
+		or die("Falha na consulta");
+		if($result == true){
+				return $result;
+		}
+		else{
+			die("Falha na consulta!");
+		}
 	}
 }
+/*public function inserir($nome){
+	$sql = "INSERT INTO $this->tabela(nome) VALUES(?)";
+	$stmt = $this->conn->prepare($sql);
+	$stmt->bind_param('s',$nome);
+	$stmt->execute();
+	
+	if($stmt == true){
+		header( "Location: ../cidades.php?nome=$nome");
+	}else{
+		die("Falha no cadastro!");
+	}
+	$stmt->close();
+	$this->conn->close();
+}*/

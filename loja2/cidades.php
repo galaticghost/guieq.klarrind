@@ -15,10 +15,9 @@
         <input type="submit" value="Salvar" />
         <input type="reset" value="Limpar" />
     </form>
-    <form method="POST" action="consulta.php" >
-        <input type="submit" value="Ir a consultas" />
-    </form>
     <?php
+        require_once("consulta.php");
+        
         if( isset($_REQUEST["nomeVazio"])){
             echo "<script> alert('O campo nome não pode ser vazio!'); </script>";
         }
