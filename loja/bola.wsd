@@ -28,6 +28,14 @@ class Conexao{
     +executarComId()
 }
 
+class CidadeDAO{
+    --
+    +inserir()
+    +editar()
+    +excluir()
+    +getCidades()
+}
+
 Cidade "0..n" --* "1..1" Cliente
 
 @enduml

@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Pessoas</h1>
-    <form method="POST" action="controller/salvarPessoa.php">
+    <form method="POST" action="controller/salvarCliente.php">
         <label>Nome: </label>
         <input type="text" placeholder="Digite o nome da pessoa..." name="txtNome" required>
         <br>
@@ -49,7 +49,7 @@
         
         if (isset($_REQUEST["nome"])){
             $nome = $_REQUEST["nome"];
-            echo "<script> alert('Cidade $nome cadastrada com sucesso'); </script>";
+            echo "<script> alert('Cliente $nome cadastrado(a) com sucesso'); </script>";
         }
     ?>
 </body>

@@ -5,15 +5,15 @@ $dataDeNascimento = $_POST["txtData"];
 $salario = $_POST["txtSalario"];
 // $cidade = no eziste
 if (strlen($nome) == 0){
-    header("Location: ../pessoas.php?nomeVazio");
+    header("Location: ../clientes.php?nomeVazio");
 }
 else{
     include_once("../dao/clsConexao.php");
     include_once("../model/clsCidade.php");
     include_once("../model/clsCliente.php");
-    include_once("../dao/clsPessoaDAO.php");
+    include_once("../dao/clsClienteDAO.php");
 
-    $novaPes = new Pessoa(null, $nome, $dataDeNascimento, $salario, "tangamandápio");
-    PessoaDAO::inserir($novaPes);
-    header("Location: ../pessoas.php?nome=$nome");
+    $novoCli = new Cliente(null, $nome, $dataDeNascimento, $salario, "tangamandápio");
+    ClienteDAO::inserir($novoCli);
+    header("Location: ../clientes.php?nome=$nome");
 }
