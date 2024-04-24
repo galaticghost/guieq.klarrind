@@ -22,7 +22,8 @@ class Bicicleta {
     }
     public function setMarca($marca){
         $this->marca = $marca;
-    }    public function getCor(){
+    }    
+    public function getCor(){
         return $this->cor;
     }
     public function setCor($cor){

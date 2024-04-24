@@ -18,4 +18,3 @@ $consulta = $cidade->consulta();
             }
         ?>
     </table>
-
