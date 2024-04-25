@@ -1,0 +1,54 @@
+@startuml Sistema Bancário
+
+title Sistema Bancário
+
+class Usuário{
+    -id: string
+    -nome: string
+    -dataDeNascimento: date
+    -cpf: string
+    -telefone: string
+    --
+    +construct("id, nome, dataDeNascimento, cpf, telefone")
+}
+
+class Cliente {
+    -contaBancaria: ContaBancaria
+    --
+}
+
+class ContaBancaria{
+    -id: string
+    --
+    +construct(id)
+}
+
+class ContaCorrente{
+
+}
+
+class ContaPoupanca{
+
+}
+
+class ContaSalario{
+
+}
+
+class Agencia{
+
+}
+
+class Banco{
+
+}
+
+Usuário "1..1" <|-up- "1..1" Cliente
+Usuário *-up- ContaBancaria
+ContaBancaria <|-- ContaCorrente
+ContaBancaria <|-- ContaPoupanca
+ContaBancaria <|-- ContaSalario
+ContaBancaria "1..*" -up- "1..1" Agencia
+Agencia -up- Banco
+
+@enduml
