@@ -1,0 +1,93 @@
+@startuml
+
+entity FILMES{
+* id BIGINT <<PK>>
+titulo VARCHAR[100]
+duracao NUMERIC [10,6]
+sinopse TEXT
+genero VARCHAR[10]
+ano DATE
+--
+id_diretores BIGINT <<FK>>
+}
+
+entity DIRETORES{
+* id BIGINT  <<PK>>
+filmografia VARCHAR[100]
+premios TEXT
+--
+id_pessoas BIGINT <<FK>>
+}
+
+entity SESSOES{
+* id BIGINT <<PK>>
+hora DATE
+data DATE
+--
+id_filmes BIGINT <<FK>>
+id_salas BIGINT <<FK>>
+}
+
+entity INGRESSOS{
+* id BIGINT <<PK>>
+valor NUMERIC[10]
+formaPag VARCHAR[10]
+desconto NUMERIC[]
+--
+id_sessoes BIGINT <<FK>>
+id_clientes BIGINT <<FK>>
+}
+
+entity SALAS{
+* id BIGINT <<PK>>
+identificacao VARCHAR[2]
+capacidade INT[5]
+tipo VARCHAR[10]
+}
+
+entity CLIENTES{
+* id BIGINT <<PK>>
+pontosDeFidelidade BIGINT
+--
+id_pessoas BIGINT <<FK>>
+}
+
+entity PESSOAS{
+* id BIGINT <<PK>>
+name VARCHAR[100]
+cpf VARCHAR[100]
+dataNascimento DATE
+cep VARCHAR[100]
+}
+
+entity FUNCIONARIOS{
+* id BIGINT <<PK>>
+cargo VARCHAR[100]
+--
+id_pessoas BIGINT <<FK>>
+}
+
+entity ATENDENTES{
+* id BIGINT <<PK>>
+--
+id_funcionarios BIGINT <<FK>>
+}
+
+entity ADMINISTRADORES{
+* id BIGINT <<PK>>
+--
+id_funcionarios BIGINT <<FK>>
+}
+
+DIRETORES ||--|{ FILMES
+FILMES ||--|{ SESSOES
+SALAS ||--left|{ SESSOES
+INGRESSOS }|--|| SESSOES
+CLIENTES ||--|{ INGRESSOS
+PESSOAS ||--|| FUNCIONARIOS
+PESSOAS ||--|| CLIENTES
+PESSOAS ||--|| DIRETORES
+FUNCIONARIOS ||--|| ATENDENTES
+FUNCIONARIOS ||--|| ADMINISTRADORES
+
+@enduml

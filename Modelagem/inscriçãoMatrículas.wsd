@@ -1,0 +1,80 @@
+@startuml Inscrições e Matriculas
+
+title Inscrições e Matrículas
+
+entity Turma{
+    * id BIGINT <<PK>>
+    --
+    id_sala BIGINT <<FK>>
+    id_curso BIGINT <<FK>>
+    id_matricula BIGINT <<FK>>
+}
+
+entity Curso{
+    * id BIGINT <<PK>>
+    nome VARCHAR[100]
+    ch INT[9]
+    area VARCHAR[100]
+}
+
+entity Instituicao {
+    * id BIGINT <<PK>>
+    nome VARCHAR[100]
+    cnpj VARCHAR[100]
+    cep VARCHAR[100]
+    telefone VARCHAR[100]
+}
+
+entity Sala {
+    * id BIGINT <<PK>>
+    disponibiblidade TEXT
+    --
+    id_instituicao BIGINt <<FK>>
+}
+
+entity Matricula{
+    * id BIGINT <<PK>>
+    ra VARCHAR [100]
+    turno VARCHAR[100]
+    valor NUMERIC [10,6]
+    formaPagamento VARCHAR[100]
+    bolsa NUMERIC [10,6]
+    --
+    id_turma BIGINT <<FK>>
+    id_aluno BIGINT <<FK>>
+}
+
+entity Professor{
+    * id BIGINT <<PK>>
+    formacao VARCHAR[100]
+    areaAtuacao VARCHAR[100]
+    --
+    id_pessoa BIGINT <<FK>>
+}
+
+entity Aluno{
+    * id BIGINT <<PK>>
+    comprovanteResidencia TEXT
+    comprovanteRenda TEXT
+    --
+    id_pessoa BIGINT <<FK>>
+}
+
+entity Pessoa{
+    * id BIGINT <<PK>>
+    nome VARCHAR[100]
+    dataNascimento DATE
+    cpf VARCHAR[100]
+    email VARCHAR[100]
+    cep VARCHAR[100]
+}
+
+Pessoa -- Aluno
+Pessoa -- Professor
+Matricula ||--|| Aluno
+Sala }--|| Instituicao
+Turma }|--|{ Professor
+Turma }|--|| Curso
+Turma ||--|{ Matricula
+Turma }|--|{ Sala
+@enduml

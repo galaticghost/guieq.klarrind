@@ -10,7 +10,7 @@ entity Cliente{
 id INT[10] <<PK>>
 nome VARCHAR[100]
 dataDeNascimento DATE 
-salario DOUBLE[10.6]
+salario NUMERIC[10.6]
 id_cidade int[10] <<FK>>
 }
 

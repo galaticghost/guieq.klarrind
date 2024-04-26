@@ -1,0 +1,80 @@
+@startuml Aeroporto
+
+title Aeroporto
+
+entity Aeroporto{
+    *id BIGINT <<PK>>
+    nome VARCHAR[100]
+    endereco TEXT
+}
+
+entity Aeronave{
+    *id BIGINT <<PK>>
+    modelo VARCHAR[100]
+    capacidade BIGINT
+}
+
+entity Voo{
+    *id BIGINT <<PK>>
+    horarioPartida DATE
+    horarioChegada DATE
+    
+}
+
+entity Compra{
+    *id BIGINT <<PK>>
+    data DATE
+    valor NUMERIC[10,6]
+
+}
+
+entity Passageiro{
+    *id BIGINT <<PK>>
+    dataNascimento DATE
+    nacionalidade VARCHAR[100]
+    numeroPassaporte BIGINT
+}
+
+entity Checkin{
+    *id BIGINT <<PK>>
+    contatoEmergencia TEXT
+    telefone VARCHAR[100]
+}
+
+entity Assento{
+    *id BIGINT <<PK>>
+    tipo VARCHAR[100]
+    status VARCHAR[100]
+}
+
+entity Piloto{
+    *id BIGINt <<PK>>
+}
+
+entity Funcionario{
+    *id BIGINT <<PK>>
+    matricula BIGINT
+    cargo VARCHAR[100]
+}
+
+entity Pessoa{
+    *id BIGINT <<PK>>
+    nome VARCHAR[100]
+    cpf VARCHAR[100]
+    rg VARCHAR[100]
+    email VARCHAR[100]
+}
+
+Voo -up- Aeronave
+Voo -left- Aeroporto
+Voo ||-right-|{ Piloto
+Voo ||--|{ Compra
+Compra }|-- Passageiro
+Compra -- Checkin
+Checkin -- Assento
+Assento -left- Aeronave
+Piloto -- Funcionario
+Funcionario -- Pessoa
+Passageiro -- Pessoa
+
+@enduml
