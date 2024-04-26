@@ -9,46 +9,62 @@ class Usuário{
     -cpf: string
     -telefone: string
     --
-    +construct("id, nome, dataDeNascimento, cpf, telefone")
+    +construct(id, nome, dataDeNascimento, cpf, telefone)
+    +getters()
+    +setters()
 }
 
 class Cliente {
+    -usuario: Usuário
     -contaBancaria: ContaBancaria
     --
+    +getters()
+    +setters()
 }
 
 class ContaBancaria{
     -id: string
     --
     +construct(id)
+    +depositar(double valor)
+    +sacar(double valor)
+    +getters()
+    +setters()
 }
 
 class ContaCorrente{
-
+    -contaBancaria: ContaBancaria
+    --
+    +depositar(double valor)
 }
 
-class ContaPoupanca{
-
+class ContaPoupança{
+    -contaBancaria: ContaBancaria
+    +depositar()
 }
 
-class ContaSalario{
-
+class ContaSalário{
+    -contaBancaria: ContaBancaria
 }
 
-class Agencia{
-
+class Agência{
+    --
+    +getters()
+    +setters()
 }
 
 class Banco{
-
+    --
+    +getters()
+    +setters()
 }
 
-Usuário "1..1" <|-up- "1..1" Cliente
-Usuário *-up- ContaBancaria
+Usuário "1..1" <|-- "1..1" Cliente
+Cliente "1..*" *-up- "1..1" ContaBancaria
 ContaBancaria <|-- ContaCorrente
-ContaBancaria <|-- ContaPoupanca
-ContaBancaria <|-- ContaSalario
-ContaBancaria "1..*" -up- "1..1" Agencia
-Agencia -up- Banco
+ContaBancaria <|-- ContaPoupança
+ContaBancaria <|-- ContaSalário
+ContaBancaria "1..*" -up- "1..1" Agência
+Agência "1..*" -up- "1..1" Banco
 
 @enduml
