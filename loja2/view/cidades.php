@@ -8,7 +8,7 @@
 <body>
     <h1>Cidades</h1>
 
-    <form method="POST" action="controller/salvarCidade.php" >
+    <form method="POST" action="../controller/cidadeController.php?action=inserirCidade" >
         <label>Nome: </label>
         <input type="text" placeholder="Digite o nome da cidade..." name="txtNome" />
         <br>
@@ -18,15 +18,24 @@
     <?php
         require_once("consulta.php");
         
-        if( isset($_REQUEST["nomeVazio"])){
+        if(isset($_REQUEST["nomeVazio"])){
             echo "<script> alert('O campo nome não pode ser vazio!'); </script>";
         }
 
-        if( isset($_REQUEST["nome"])){
+        if(isset($_REQUEST["nome"])){
             $nome = $_REQUEST["nome"];
             echo "<script> alert('Cidade $nome cadastrada com sucesso!'); </script>";
         }
-    ?>
 
+        if (isset($_REQUEST["erro"])){
+            $nome = $_REQUEST["erro"];
+            echo "<script> alert('Erro! Não foi possivel cadastrar'); </script>";
+        }
+
+        if(isset($_REQUEST["excluir"])){
+            $nome = $_REQUEST["excluir"];
+            echo "<script> alert('Cidade excluida com sucesso!'); </script>";
+        }
+    ?>
 </body>
 </html>

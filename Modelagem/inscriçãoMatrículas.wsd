@@ -29,7 +29,7 @@ entity Sala {
     * id BIGINT <<PK>>
     disponibiblidade TEXT
     --
-    id_instituicao BIGINt <<FK>>
+    id_instituicao BIGINT <<FK>>
 }
 
 entity Matricula{

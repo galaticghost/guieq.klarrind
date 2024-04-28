@@ -2,16 +2,16 @@
 require_once("conexao.php");
 
 Class Cidade extends conexao{
-	public $id;
-	public $nome;
-	public $tabela = "cidade";
+	private $id;
+	private $nome;
+	private $tabela = "cidade";
 
 	public function __construct(){
 		parent::__construct();
 	}
 //consulta no banco
 	public function consulta(){
-		$sql = "SELECT * FROM $this->tabela";
+		$sql = "SELECT id,nome FROM $this->tabela";
 		$result = $this->conn->query($sql)
 		or die("Falha na consulta");
 		if($result == true){
@@ -20,7 +20,7 @@ Class Cidade extends conexao{
 		else{
 			die("Falha na consulta!");
 		}
-		//$this->conn->close();
+		$this->conn->close();
 		}
 	
 	public function inserir($nome){
@@ -34,6 +34,11 @@ Class Cidade extends conexao{
 		else{
 			die("Falha na consulta!");
 		}
+	}
+	public function excluir($id){
+		$sql = "DELETE FROM $this->tabela WHERE id = $id";
+		$this->conn->query($sql);
+		$this->conn->close();
 	}
 }
 /*public function inserir($nome){

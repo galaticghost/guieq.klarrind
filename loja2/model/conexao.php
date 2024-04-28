@@ -1,10 +1,10 @@
 <?php
 	abstract Class conexao{
-		public $servidor = 'localhost';
-		public $user = 'root';
-		public $pass = '';
-		public $banco = 'market';
-		public $conn;
+		private $servidor = 'localhost';
+		private $user = 'root';
+		private $pass = '';
+		private $banco = 'market';
+		protected $conn;
 		
 		public function __construct(){
 			$this->conexao();
@@ -16,4 +16,3 @@
 			
 		}
 	}
-
