@@ -12,10 +12,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar cidade</title>
+    <title>Editar cidades</title>
 </head>
 <body>
-    <h1>Editar cidades</h1>
+    <h1>Editar cidade</h1>
     <form method="POST" action ="../controller/cidadeController.php?action=editarCidade&id=<?php echo $id;?>">
         Nome: <input type="text" placeholder="Digite o nome da cidade..." name="novoNome" />
         <br>

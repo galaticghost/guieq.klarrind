@@ -28,12 +28,13 @@
         }
 
         if (isset($_REQUEST["erro"])){
-            $nome = $_REQUEST["erro"];
             echo "<script> alert('Erro! Não foi possivel cadastrar'); </script>";
         }
 
+        if(isset($_REQUEST["editar"])){
+            echo "<script> alert('Cidade editada com sucesso!'); </script>";
+        }
         if(isset($_REQUEST["excluir"])){
-            $nome = $_REQUEST["excluir"];
             echo "<script> alert('Cidade excluida com sucesso!'); </script>";
         }
     ?>
