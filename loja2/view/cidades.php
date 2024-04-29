@@ -24,8 +24,6 @@
         <tr>
             <th>Id</th>
             <th>Nome</th>
-            <th>Editar</th>
-            <th>Excluir</th>
         </tr> 
     <?php
     foreach($result as $linha){
@@ -33,30 +31,30 @@
             echo"<tr>
                 <td>" . $linha['id'] . "</td>
                 <td>" . $linha['nome'] . "</td>
-                <td><button><a href ='editarCidade.php?id=$id'>editar</a></button></td>
-                <td><button><a href ='../controller/cidadeController.php?action=excluirCidade&id=$id'onclick='return confirm(\"Tem certeza?\")'>excluir</a><button</td>
+                <td><a href ='editarCidade.php?id=$id'><button>editar</button></a></td>
+                <td><a href ='../controller/cidadeController.php?action=excluirCidade&id=$id'onclick='return confirm(\"Tem certeza?\")'><button>excluir</button></a></td>
                 </tr>";
         }
     ?>
             </table>
         <?php
-        if(isset($_REQUEST["nomeVazio"])){
+        if(isset($_GET["nomeVazio"])){
             echo "<script> alert('O campo nome não pode ser vazio!'); </script>";
         }
 
-        if(isset($_REQUEST["nome"])){
-            $nome = $_REQUEST["nome"];
+        if(isset($_GET["nome"])){
+            $nome = $_GET["nome"];
             echo "<script> alert('Cidade $nome cadastrada com sucesso!'); </script>";
         }
 
-        if (isset($_REQUEST["erro"])){
+        if (isset($_GET["erro"])){
             echo "<script> alert('Erro! Não foi possivel cadastrar'); </script>";
         }
 
-        if(isset($_REQUEST["editar"])){
+        if(isset($_GET["editar"])){
             echo "<script> alert('Cidade editada com sucesso!'); </script>";
         }
-        if(isset($_REQUEST["excluir"])){
+        if(isset($_GET["excluir"])){
             echo "<script> alert('Cidade excluida com sucesso!'); </script>";
         }
     ?>

@@ -18,15 +18,13 @@ Class Cidade extends conexao{
 			return $result;
 		}
 		$this->conn->close();
-		}
+	}
 	
 	public function inserir($nome){
 		$sql = "INSERT INTO $this->tabela(nome) VALUES ('$nome');";
-		$result = $this->conn->query($sql)
+		$this->conn->query($sql)
 		or die("Falha na consulta");
-		if($result == true){
-				return $result;
-		}
+		$this->conn->close();
 	}
 	public function editar($nome, $id){
 		$sql = "UPDATE cidade SET nome = ('$nome') WHERE id = $id;";
