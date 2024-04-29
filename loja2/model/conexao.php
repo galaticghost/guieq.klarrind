@@ -4,7 +4,7 @@
 		private $user = 'root';
 		private $pass = '';
 		private $banco = 'market';
-		protected $conn;
+		public $conn;
 		
 		public function __construct(){
 			$this->conexao();

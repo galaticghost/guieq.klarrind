@@ -17,22 +17,15 @@ Class Cidade extends conexao{
 		if($result == true){
 			return $result;
 		}
-		else{
-			die("Falha na consulta!");
-		}
-		//$this->conn->close();
+		$this->conn->close();
 		}
 	
 	public function inserir($nome){
 		$sql = "INSERT INTO $this->tabela(nome) VALUES ('$nome');";
-		//mysqli_query($this->conn, $sql);
 		$result = $this->conn->query($sql)
 		or die("Falha na consulta");
 		if($result == true){
 				return $result;
-		}
-		else{
-			die("Falha na consulta!");
 		}
 	}
 	public function editar($nome, $id){

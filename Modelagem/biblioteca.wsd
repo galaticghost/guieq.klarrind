@@ -1,3 +1,24 @@
 @startuml biblioteca
+title Biblioteca
+
+entity Livro{
+    isbn VARCHAR[20] <<PK>>
+    autor VARCHAR[255]
+    editora VARCHAR[255]
+    paginas INT
+    
+}
+
+entity Autor{
+    id int <<PK>>
+
+}
+
+entity Editora{
+
+}
+
+Livro }|--|{ Autor
+Livro }|--o{ Editora
 
 @enduml

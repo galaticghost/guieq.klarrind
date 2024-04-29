@@ -33,8 +33,8 @@
             echo"<tr>
                 <td>" . $linha['id'] . "</td>
                 <td>" . $linha['nome'] . "</td>
-                <td><a href ='editarCidade.php?id=$id'>editar</a></td>
-                <td><a href ='../controller/cidadeController.php?action=excluirCidade&id=$id'onclick='return confirm(\"Tem certeza?\")'>excluir</a></td>
+                <td><button><a href ='editarCidade.php?id=$id'>editar</a></button></td>
+                <td><button><a href ='../controller/cidadeController.php?action=excluirCidade&id=$id'onclick='return confirm(\"Tem certeza?\")'>excluir</a><button</td>
                 </tr>";
         }
     ?>
