@@ -14,8 +14,20 @@
         <input type="submit" value="Salvar">
         <input type="reset" value="Limpar">
     </form>
+<?php
+    include_once("model/clsCidade.php");
+    include_once("dao/clsCidadeDAO.php");
+    include_once("dao/clsConexao.php");
 
-    <hr>
+    $cidade = CidadeDao::getCidades();
+    
+    if(count($cidade) == 0){
+        echo "<h1>Nenhuma cidade cadastrada</h1>";
+    }
+    else{
+
+    }
+?>
     
     <table border="1">
         <tr>
@@ -52,6 +64,8 @@
     </table>
 
     <?php
+        
+        
         if (isset($_REQUEST["nomeVazio"])){
             echo "<script> alert('O campo nome não pode ser vazio'); </script>";
         }

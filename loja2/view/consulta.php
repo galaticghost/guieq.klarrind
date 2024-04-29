@@ -19,7 +19,7 @@ $result = $controller->consultar();
                 echo"<tr>
                         <td>" . $linha['id'] . "</td>
                         <td>" . $linha['nome'] . "</td>
-                        <td><a href ='../controller/cidadeController.php?action=editarCidade&id=$id'>editar</a></td>
+                        <td><a href ='editarCidade.php?id=$id'>editar</a></td>
                         <td><a href ='../controller/cidadeController.php?action=excluirCidade&id=$id'onclick='return confirm(\"Tem certeza?\")'>excluir</a></td>
                     </tr>";
             }

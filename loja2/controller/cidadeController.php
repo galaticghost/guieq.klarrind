@@ -22,6 +22,14 @@ class CidadeController{
             header("Location: ../view/cidades.php?nome=erro");
         }
     }
+    
+    public function editarCidade(){
+        $nome = $_POST['novoNome'];
+        $id = $_GET['id'];
+        $editaCidade = new Cidade();
+        $editaCidade->editar($nome, $id);
+        header("Location: ../view/cidades.php?editar");
+    }
     public function excluir(){
         $id = $_GET['id'];
         $excluiCidade = new Cidade();
@@ -29,14 +37,15 @@ class CidadeController{
         header("Location: ../view/cidades.php?excluir");
     }
     
-    
-    
     public function handleRequest(){
         if (isset($_GET['action']) and $_GET['action'] == 'inserirCidade'){
             $this->inserir();
         }
         elseif(isset($_GET['action']) and $_GET['action'] =='excluirCidade'){
             $this->excluir();
+        }
+        elseif(isset($_GET['action']) and $_GET['action'] =='editarCidade'){
+            $this->editarCidade();
         }
     }
 }

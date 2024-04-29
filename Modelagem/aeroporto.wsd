@@ -65,14 +65,14 @@ entity Pessoa{
     email VARCHAR[100]
 }
 
-Voo -up- Aeronave
-Voo -left- Aeroporto
+Voo ||-up-|| Aeronave
+Voo }|-left-|| Aeroporto
 Voo ||-right-|{ Piloto
 Voo ||--|{ Compra
-Compra }|-- Passageiro
-Compra -- Checkin
+Compra }|--|{ Passageiro
+Compra ||--|| Checkin
 Checkin -- Assento
-Assento -left- Aeronave
+Assento }-left-{ Aeronave
 Piloto -- Funcionario
 Funcionario -- Pessoa
 Passageiro -- Pessoa

@@ -20,7 +20,7 @@ Class Cidade extends conexao{
 		else{
 			die("Falha na consulta!");
 		}
-		$this->conn->close();
+		//$this->conn->close();
 		}
 	
 	public function inserir($nome){
@@ -34,6 +34,11 @@ Class Cidade extends conexao{
 		else{
 			die("Falha na consulta!");
 		}
+	}
+	public function editar($nome, $id){
+		$sql = "UPDATE cidade SET nome = ('$nome') WHERE id = $id;";
+		$this->conn->query($sql);
+		$this->conn->close();
 	}
 	public function excluir($id){
 		$sql = "DELETE FROM $this->tabela WHERE id = $id";
