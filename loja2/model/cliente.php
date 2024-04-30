@@ -10,18 +10,23 @@ class Cliente extends conexao {
 
     public function inserir($nome, $dataDeNascimento, $salario){
         $sql = "INSERT INTO cliente(nome, dataDeNascimento, salario) VALUES ('$nome', '$dataDeNascimento', '$salario');";
-        $result = $this->conn->query($sql)
+        $this->conn->query($sql)
         or die("Falha na consulta");
-        if($result == true){
-            return $result;
-        }
+        $this->conn->close();
     }
     public function consulta(){
         $sql = "SELECT * FROM cliente ;";
         $result = $this->conn->query($sql)
         or die ("Falha na consulta");
+        $this->conn->close();
         if($result == true){
             return $result;
         }
+    }
+    public function excluir($id){
+        $sql = "DELETE FROM cliente WHERE id = $id";
+        $this->conn->query($sql)
+        or die("Falha na consulta");
+        $this->conn->close();
     }
 }

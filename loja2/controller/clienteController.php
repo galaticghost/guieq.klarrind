@@ -25,12 +25,21 @@ class clienteController{
         $novoCli = $novoCli->consulta();
         return $novoCli;
     }
+    public function excluirCliente(){
+        $id = $_GET['id'];
+        $novoCli = new Cliente();
+        $novoCli->excluir($id);
+        header("Location: ../view/clientes.php?excluido");
+    }
 
-    public function handlerRequest(){
+    public function handleRequest(){
         if(isset($_GET['action']) and $_GET['action'] == 'inserirCliente'){
             $this->inserirCliente();
+        }
+        if(isset($_GET['action']) and $_GET['action'] == 'excluirCliente'){
+            $this->excluirCliente();
         }
     }
 }
 $controlador = new clienteController();
-$controlador->handlerRequest();
+$controlador->handleRequest();

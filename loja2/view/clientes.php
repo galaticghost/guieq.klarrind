@@ -12,10 +12,10 @@
         <input type="text" placeholder="Digite o nome do cliente..." name="txtNome" />
         <br>
         <label>Data de nascimento: </label>
-        <input type="text" placeholder="Digite a data de nascimento..." name="txtData" />
+        <input type="date" name="txtData" />
         <br>
         <label>salário: </label>
-        <input type="text" placeholder="Digite o salário do cliente..." name="txtSalario" />
+        <input type="number" step="0.01" name="txtSalario" />
         <br>
         <input type="submit" value="Salvar" />
         <input type="reset" value="Limpar" />
@@ -46,9 +46,6 @@
         }
     ?>
     <?php
-    
-
-
     if(isset($_GET['nome'])){
         $nome = $_GET['nome'];
         echo "<script>alert('O cliente $nome foi registrado com sucesso!');</script>";
