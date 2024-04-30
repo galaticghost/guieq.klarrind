@@ -20,6 +20,7 @@
         <input type="submit" value="Salvar" />
         <input type="reset" value="Limpar" />
     </form>
+    <a href="admin.php"><button>Voltar</button></a>
     <table border ="1">
         <tr>
             <th>Id</th>

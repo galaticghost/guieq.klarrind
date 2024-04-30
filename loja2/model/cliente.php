@@ -23,6 +23,12 @@ class Cliente extends conexao {
             return $result;
         }
     }
+    public function editar($tipo,$valor,$id){
+        $sql = "UPDATE cliente SET $tipo = '$valor' WHERE id = $id";
+        $this->conn->query($sql)
+        or die("Falha na edição");
+        $this->conn->close();
+    }
     public function excluir($id){
         $sql = "DELETE FROM cliente WHERE id = $id";
         $this->conn->query($sql)

@@ -3,22 +3,35 @@ title Biblioteca
 
 entity Livro{
     isbn VARCHAR[20] <<PK>>
-    autor VARCHAR[255]
-    editora VARCHAR[255]
+    autor VARCHAR[255] <<FK>>
+    editora VARCHAR[255] <<FK>>
+    genero VARCHAR[255]
     paginas INT
-    
+    ano DATE
+    status
 }
 
 entity Autor{
     id int <<PK>>
-
+    nome VARCHAR[255]
+    dataDeNascimento DATE
+    livros VARCHAR[255] <<FK>>
 }
 
 entity Editora{
+    id int <<PK>>
+    nome VARCHAR[255]
+    
+}
 
+entity Cliente{
+    id int <<PK>>
+    nome VARCHAR[255]
+    cpf varchar[20]
 }
 
 Livro }|--|{ Autor
 Livro }|--o{ Editora
+Livro |o--o| Cliente
 
 @enduml

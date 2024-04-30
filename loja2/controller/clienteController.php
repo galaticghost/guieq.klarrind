@@ -12,7 +12,6 @@ class clienteController{
         elseif($_SERVER['REQUEST_METHOD'] === 'POST'){
             $novoCli = new Cliente();
             $novoCli->inserir($nome,$dataDeNascimento,$salario);
-            $novoCli->conn->close();
             header("Location: ../view/clientes.php?nome=$nome");
         }
         else{
@@ -24,6 +23,14 @@ class clienteController{
         $novoCli = new Cliente();
         $novoCli = $novoCli->consulta();
         return $novoCli;
+    }
+    public function editarCliente(){
+        $id = $_GET['id'];
+        $valor = $_POST['novoValor'];
+        $type = $_GET['type'];
+        $novoCli = new Cliente();
+        $novoCli->editar($type,$valor,$id);
+        header("Location: ../view/editarCliente.php?id=$id");
     }
     public function excluirCliente(){
         $id = $_GET['id'];
@@ -38,6 +45,9 @@ class clienteController{
         }
         if(isset($_GET['action']) and $_GET['action'] == 'excluirCliente'){
             $this->excluirCliente();
+        }
+        if(isset($_GET['action']) and $_GET['action'] == 'editarCliente'){
+            $this->editarCliente();
         }
     }
 }

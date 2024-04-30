@@ -15,17 +15,18 @@
         <input type="submit" value="Salvar" />
         <input type="reset" value="Limpar" />
     </form>
-    <?php
-    require_once("../controller/cidadeController.php");    
-    $controller = new CidadeController();
-    $result = $controller->consultar();
-    ?>
+    <a href="admin.php"><button>Voltar</button></a>
+
     <table border ="1">
         <tr>
             <th>Id</th>
             <th>Nome</th>
         </tr> 
+    
     <?php
+    require_once("../controller/cidadeController.php");    
+    $controller = new CidadeController();
+    $result = $controller->consultar();
     foreach($result as $linha){
         $id = $linha['id'];
             echo"<tr>
@@ -36,27 +37,28 @@
                 </tr>";
         }
     ?>
-            </table>
-        <?php
-        if(isset($_GET["nomeVazio"])){
-            echo "<script> alert('O campo nome não pode ser vazio!'); </script>";
-        }
+    </table>
+        
+    <?php
+    if(isset($_GET["nomeVazio"])){
+        echo "<script> alert('O campo nome não pode ser vazio!'); </script>";
+    }
 
-        if(isset($_GET["nome"])){
-            $nome = $_GET["nome"];
-            echo "<script> alert('Cidade $nome cadastrada com sucesso!'); </script>";
-        }
+    if(isset($_GET["nome"])){
+        $nome = $_GET["nome"];
+        echo "<script> alert('Cidade $nome cadastrada com sucesso!'); </script>";
+    }
 
-        if (isset($_GET["erro"])){
-            echo "<script> alert('Erro! Não foi possivel cadastrar'); </script>";
-        }
+    if (isset($_GET["erro"])){
+        echo "<script> alert('Erro! Não foi possivel cadastrar'); </script>";
+    }
 
-        if(isset($_GET["editar"])){
-            echo "<script> alert('Cidade editada com sucesso!'); </script>";
-        }
-        if(isset($_GET["excluir"])){
-            echo "<script> alert('Cidade excluida com sucesso!'); </script>";
-        }
+    if(isset($_GET["editar"])){
+        echo "<script> alert('Cidade editada com sucesso!'); </script>";
+    }
+    if(isset($_GET["excluir"])){
+        echo "<script> alert('Cidade excluida com sucesso!'); </script>";
+    }
     ?>
 </body>
 </html>
