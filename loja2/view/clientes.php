@@ -9,13 +9,16 @@
     <h1>Clientes</h1>
     <form method="POST" action="../controller/clienteController.php?action=inserirCliente" >
         <label>Nome: </label>
-        <input type="text" placeholder="Digite o nome do cliente..." name="txtNome" />
+        <input type="text" placeholder="Digite o nome do cliente..." name="txtNome" required />
         <br>
         <label>Data de nascimento: </label>
-        <input type="date" name="txtData" />
+        <input type="date" name="txtData" required />
         <br>
-        <label>salário: </label>
-        <input type="number" step="0.01" name="txtSalario" />
+        <label>Salário: </label>
+        <input type="number" step="0.01" name="txtSalario" required />
+        <br>
+        <label>Código cidade:</label>
+        <input type="number" name="txtCodCidade" required />
         <br>
         <input type="submit" value="Salvar" />
         <input type="reset" value="Limpar" />
@@ -35,12 +38,18 @@
     $result = $controlador->consultar(); 
     foreach($result as $linha){
         $id = $linha['id'];
-            echo"<tr>
-                <td>" . $linha['id'] . "</td>
-                <td>" . $linha['nome'] . "</td>
-                <td>" . $linha['dataDeNascimento'] . "</td>
-                <td>" . $linha['salario'] . "</td>
-                <td>" . $linha['codCidade'] . "</td>
+        $nome = $linha['nome'];
+        $dataDeNascimento = $linha['dataDeNascimento'];
+        $dataDeNascimento = date('d/m/Y', strtotime($dataDeNascimento));
+        $salario = $linha['salario'];
+        $salario = number_format($salario,2, ',', '.');
+        $codCidade = $linha['codCidade'];
+        echo"<tr>
+                <td>" . $id . "</td>
+                <td>" . $nome . "</td>
+                <td>" . $dataDeNascimento . "</td>
+                <td> R$" . $salario . "</td>
+                <td>" . $codCidade . "</td>
                 <td><a href ='editarCliente.php?id=$id'><button>editar</button></a></td>
                 <td><a href ='../controller/clienteController.php?action=excluirCliente&id=$id'onclick='return confirm(\"Tem certeza?\")'><button>excluir</button></a></td>
                 </tr>";
@@ -52,12 +61,14 @@
         echo "<script>alert('O cliente $nome foi registrado com sucesso!');</script>";
     }
     if(isset($_GET['nomeVazio'])){
-        echo "<script>alert('Um dos campos está vazio');</script>";
+        echo "<script>alert('Há campos vazios');</script>";
     }
     if(isset($_GET['erro'])){
         echo "<script>alert('Deu pau no sistema');</script>";
     }
-    
+    if(isset($_GET['excluido'])){
+        echo "<script>alert('Cliente excluído com sucesso!');</script>";
+    }
     ?>
 </body>
 </html>

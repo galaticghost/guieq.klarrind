@@ -6,28 +6,28 @@ class clienteController{
         $nome = $_POST["txtNome"];
         $dataDeNascimento = $_POST["txtData"];
         $salario = $_POST["txtSalario"];
-        if(($nome == null) or ($dataDeNascimento == null) or ($salario == null)){
+        $codCidade = $_POST["txtCodCidade"];
+        if(($nome == null) or ($dataDeNascimento == null) or ($salario == null) or ($codCidade == null)){
             header("Location: ../view/clientes.php?campoVazio");
         }
         elseif($_SERVER['REQUEST_METHOD'] === 'POST'){
             $novoCli = new Cliente();
-            $novoCli->inserir($nome,$dataDeNascimento,$salario);
+        $novoCli->inserir($nome,$dataDeNascimento,$salario,$codCidade);
             header("Location: ../view/clientes.php?nome=$nome");
         }
         else{
             header("Location: ../view/clientes.php?erro");
         }
     }
-
     public function consultar(){
         $novoCli = new Cliente();
-        $novoCli = $novoCli->consulta();
-        return $novoCli;
+        $result = $novoCli->consulta();
+        return $result;
     }
     public function editarCliente(){
         $id = $_GET['id'];
-        $valor = $_POST['novoValor'];
-        $type = $_GET['type'];
+        $valor = $_POST['novoValor']; // valor sendo o dado a ser modificado
+        $type = $_GET['type']; // e type o tipo do valor a ser modificado (Resumindo a coluna)
         $novoCli = new Cliente();
         $novoCli->editar($type,$valor,$id);
         header("Location: ../view/editarCliente.php?id=$id");

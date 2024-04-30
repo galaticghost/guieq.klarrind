@@ -8,8 +8,9 @@ class Cliente extends conexao {
     private $dataDeNascimento;
     private $salario;
 
-    public function inserir($nome, $dataDeNascimento, $salario){
-        $sql = "INSERT INTO cliente(nome, dataDeNascimento, salario) VALUES ('$nome', '$dataDeNascimento', '$salario');";
+    public function inserir($nome, $dataDeNascimento, $salario, $codCidade){
+        $sql = "INSERT INTO cliente(nome, dataDeNascimento, salario ,codCidade) VALUES 
+        ('$nome', '$dataDeNascimento', '$salario', '$codCidade');";
         $this->conn->query($sql)
         or die("Falha na consulta");
         $this->conn->close();

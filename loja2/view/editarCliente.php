@@ -31,6 +31,11 @@ else{
             <input type="submit" value="Salvar" />
             <input type="reset" value="Limpar" />
         </form>
+        <form method="POST" action ="../controller/clienteController.php?action=editarCliente&id=<?php echo $id;?>&type=codCidade">
+            Código cidade: <input type="number" name="novoValor" />
+            <input type="submit" value="Salvar" />
+            <input type="reset" value="Limpar" />
+        </form>
         <a href="clientes.php"><button>Voltar</button></a>
 </body>
 </html>
