@@ -7,6 +7,7 @@ class Cliente extends conexao {
     private $nome;
     private $dataDeNascimento;
     private $salario;
+    private $codCidade;
 
     public function inserir($nome, $dataDeNascimento, $salario, $codCidade){
         $sql = "INSERT INTO cliente(nome, dataDeNascimento, salario ,codCidade) VALUES 

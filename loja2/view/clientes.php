@@ -50,7 +50,7 @@
                 <td>" . $dataDeNascimento . "</td>
                 <td> R$" . $salario . "</td>
                 <td>" . $codCidade . "</td>
-                <td><a href ='editarCliente.php?id=$id'><button>editar</button></a></td>
+                <td><a href ='editarCliente.php?id=$id&nome=$nome'><button>editar</button></a></td>
                 <td><a href ='../controller/clienteController.php?action=excluirCliente&id=$id'onclick='return confirm(\"Tem certeza?\")'><button>excluir</button></a></td>
                 </tr>";
         }
