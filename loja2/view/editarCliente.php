@@ -1,5 +1,5 @@
 <?php
-if ((isset($_GET['id'])) and (isset($_GET['nome']))){
+if (isset($_GET['id'])){
     $id = $_GET['id'];
     $nome = $_GET['nome'];
 }
