@@ -37,4 +37,12 @@ class Cliente extends conexao {
         or die("Falha na consulta");
         $this->conn->close();
     }
+    public function consultaNome($id){
+        $sql = "SELECT nome FROM cliente WHERE id = $id;";
+        $result = $this->conn->query($sql);
+        if($result == true){
+            return $result;
+        }
+        $this->conn->close();
+    }
 }

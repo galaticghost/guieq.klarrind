@@ -19,9 +19,14 @@ class clienteController{
             header("Location: ../view/clientes.php?erro");
         }
     }
-    public function consultar(){
+    public static function consultar(){
         $novoCli = new Cliente();
         $result = $novoCli->consulta();
+        return $result;
+    }
+    public function consultarNome($id){
+        $novoCli = new Cliente();
+        $result = $novoCli->consultaNome($id);
         return $result;
     }
     public function editarCliente(){

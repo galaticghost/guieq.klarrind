@@ -3,7 +3,7 @@
 require_once("../model/cidade.php");
 
 class CidadeController{
-    public function consultar(){
+    public static function consultar(){
         $cidade = new cidade();
         $result = $cidade->consulta();
         return $result;

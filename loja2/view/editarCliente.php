@@ -1,7 +1,7 @@
 <?php
+include_once("../controller/clienteController.php");
 if (isset($_GET['id'])){
     $id = $_GET['id'];
-    $nome = $_GET['nome'];
 }
 else{
     die("Sem id");
@@ -17,7 +17,13 @@ else{
 </head>
 <body>
     <h1>Editar cliente</h1>
-    <?php echo "<h2>$nome</h2>";?>
+    <?php
+    if(isset($_GET['nome'])){
+        $controlador = new clienteController();
+        $controlador->consultarNome($id);
+        $nome = $_GET['nome'];
+        echo "<h2>$nome</h2>";
+    }?>
         <form method="POST" action ="../controller/clienteController.php?action=editarCliente&id=<?php echo $id;?>&type=nome">
             Nome: <input type="text" placeholder="Digite o nome do cliente..." name="novoValor" />
             <input type="submit" value="Salvar" />

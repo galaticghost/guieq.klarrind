@@ -25,8 +25,7 @@
     
     <?php
     require_once("../controller/cidadeController.php");    
-    $controller = new CidadeController();
-    $result = $controller->consultar();
+    $result = CidadeController::consultar();
     foreach($result as $linha){
         $id = $linha['id'];
             echo"<tr>

@@ -34,8 +34,7 @@
         </tr> 
     <?php
     require_once("../controller/clienteController.php");
-    $controlador = new clienteController();
-    $result = $controlador->consultar(); 
+    $result = clienteController::consultar(); 
     foreach($result as $linha){
         $id = $linha['id'];
         $nome = $linha['nome'];
