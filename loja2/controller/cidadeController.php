@@ -1,6 +1,6 @@
 <?php
 
-require_once("../model/cidade.php");
+require_once("../model/cidadeModel.php");
 
 class CidadeController{
     public static function consultar(){
@@ -8,6 +8,7 @@ class CidadeController{
         $result = $cidade->consulta();
         return $result;
     }
+    
     public function inserir(){
         $nome = $_POST['txtNome'];
         if(strlen( $nome ) == 0){
@@ -16,7 +17,6 @@ class CidadeController{
         elseif($_SERVER['REQUEST_METHOD'] === 'POST') {
             $novaCid = new Cidade();
             $novaCid->inserir($nome);
-            header("Location: ../view/cidades.php?nome=$nome");
         }
         else{
             header("Location: ../view/cidades.php?nome=erro");
@@ -28,13 +28,11 @@ class CidadeController{
         $id = $_GET['id'];
         $editaCidade = new Cidade();
         $editaCidade->editar($nome, $id);
-        header("Location: ../view/cidades.php?editar");
     }
     public function excluir(){
         $id = $_GET['id'];
         $excluiCidade = new Cidade();
         $excluiCidade->excluir($id);
-        header("Location: ../view/cidades.php?excluir");
     }
     
     public function handleRequest(){

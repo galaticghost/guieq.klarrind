@@ -1,5 +1,5 @@
 <?php
-require_once("../model/cliente.php");
+require_once("../model/clienteModel.php");
 
 class clienteController{
     public function inserirCliente(){
@@ -13,35 +13,36 @@ class clienteController{
         elseif($_SERVER['REQUEST_METHOD'] === 'POST'){
             $novoCli = new Cliente();
         $novoCli->inserir($nome,$dataDeNascimento,$salario,$codCidade);
-            header("Location: ../view/clientes.php?nome=$nome");
         }
         else{
             header("Location: ../view/clientes.php?erro");
         }
     }
+    
     public static function consultar(){
         $novoCli = new Cliente();
         $result = $novoCli->consulta();
         return $result;
     }
+    
     public function consultarNome($id){
         $novoCli = new Cliente();
         $result = $novoCli->consultaNome($id);
         return $result;
     }
+   
     public function editarCliente(){
         $id = $_GET['id'];
         $valor = $_POST['novoValor']; // valor sendo o dado a ser modificado
         $type = $_GET['type']; // e type o tipo do valor a ser modificado (Resumindo a coluna)
         $novoCli = new Cliente();
         $novoCli->editar($type,$valor,$id);
-        header("Location: ../view/editarCliente.php?id=$id");
     }
+    
     public function excluirCliente(){
         $id = $_GET['id'];
         $novoCli = new Cliente();
         $novoCli->excluir($id);
-        header("Location: ../view/clientes.php?excluido");
     }
 
     public function handleRequest(){
