@@ -1,0 +1,68 @@
+@startuml Sistema Acadêmico
+
+title Sistema Acadêmico
+
+class Usuário{
+    -nome: String
+    -telefone: String
+    -cep: String
+    -ra: int
+    --
+    +login()
+    +construtor()
+}
+
+class Aluno{
+    -curso: Curso
+    --
+    +verNota()
+    +construtor()
+}
+
+class Professor{
+    -titulacao: String
+    -area: String
+    -unidadeCurricular: UnidadeCurricular
+    --
+    +lançarNota()
+    +construtor()
+}
+
+class Coordenador{
+    -area: String
+    -curso: Curso
+    --
+    +construtor()
+}
+
+class UnidadeCurricular{
+    -nome: String
+    -curso: Curso
+    --
+    +construtor()
+}
+
+class Curso{
+    -nome: String
+    -universidade: String
+    --
+    +construtor()
+}
+
+class matricula{
+    -data: date
+    -horario: date
+    -taxa: double
+    -protocolo: int
+    --
+    +construtor()
+}
+
+Usuário <|-right- Aluno
+Usuário <|-left- Professor
+Usuário <|-left- Coordenador
+Professor *-up- UnidadeCurricular
+Curso *-up- Aluno
+Curso --* Coordenador
+Curso -left-* UnidadeCurricular
+@enduml

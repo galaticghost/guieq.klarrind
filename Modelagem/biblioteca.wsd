@@ -2,36 +2,53 @@
 title Biblioteca
 
 entity Livro{
-    isbn VARCHAR[20] <<PK>>
-    autor VARCHAR[255] <<FK>>
-    editora VARCHAR[255] <<FK>>
+    *isbn VARCHAR[20] <<PK>>
+    id_Autor int <<FK>>
+    id_Editora int <<FK>>
+    id_Status int <<FK>>
     genero VARCHAR[255]
     paginas INT
     ano DATE
-    status
 }
 
 entity Autor{
-    id int <<PK>>
+    *id_Autor <<PK>>
     nome VARCHAR[255]
     dataDeNascimento DATE
     livros VARCHAR[255] <<FK>>
+    editora VARCHAR[255] <<FK>>
 }
 
 entity Editora{
-    id int <<PK>>
+    *id_Editora int <<PK>>
     nome VARCHAR[255]
     
 }
 
 entity Cliente{
-    id int <<PK>>
+    *id_Cliente int <<PK>>
+    isbn VARCHAR[20] <<FK>>
     nome VARCHAR[255]
-    cpf varchar[20]
+    cpf VARCHAR[20]
 }
 
-Livro }|--|{ Autor
-Livro }|--o{ Editora
-Livro |o--o| Cliente
+entity Status{
+    *id_Status int <<PK>>
+    id_Cliente int <<FK>>
+    id_Emprestimo <<FK>>
+    Status CHAR[1]
+}
 
+entity Empréstimo{
+    id_Emprestimo int <<PK>>
+    dataDeRetirada DATE
+    dataDeEntrega DATE    
+}
+
+Livro ||--|| Status
+Livro }|--|{ Autor
+Livro }|--o| Editora
+Livro |o--o| Cliente
+Autor }|--|{ Editora
+Status ||--o| Empréstimo
 @enduml

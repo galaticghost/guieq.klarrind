@@ -1,0 +1,37 @@
+@startuml cinema
+left to right direction
+
+actor "Cliente" as Ator1
+actor "Atendente" as Ator2
+actor "Administrador" as Ator3
+
+usecase "Comprar/Vender ingresso" as CasoUso1
+usecase "Efetuar pagamento" as CasoUso2
+usecase "Cadastrar diretor" as CasoUso3
+usecase "Cadastrar Filmes" as CasoUso4
+usecase "Criar Sessoes" as CasoUso5
+usecase "Cadastrar clientes" as CasoUso6
+usecase "Cadastrar sala" as CasoUso7
+usecase "Imprimir Ingresso" as CasoUso8
+usecase "Validar Ingresso" as CasoUso9
+usecase "Atribuir desconto" as CasoUso10
+usecase "Cadastrar Funcionários" as CasoUso11
+
+Ator1 --> CasoUso1
+CasoUso1 -.> CasoUso2 : "<<include>>"
+Ator2 -up-> CasoUso1
+Ator2 -up-> CasoUso6
+Ator2 -up-> CasoUso9
+Ator2 -up-> CasoUso5
+Ator3 --> CasoUso4
+Ator3 --> CasoUso5
+Ator3 --> CasoUso10
+Ator3 --> CasoUso11
+Ator3 --> CasoUso7
+Ator3 --> CasoUso3
+CasoUso3 <-. CasoUso4 : "<<include>>"
+CasoUso2 <-up. CasoUso8 : "<<include>>"
+CasoUso10 -.> CasoUso2 : "<<extend>>"
+CasoUso5 -.> CasoUso4 : "<<include>>"
+CasoUso7 <-. CasoUso5 : "<<include>>"
+@enduml

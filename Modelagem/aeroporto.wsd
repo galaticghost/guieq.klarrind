@@ -18,18 +18,26 @@ entity Voo{
     *id BIGINT <<PK>>
     horarioPartida DATE
     horarioChegada DATE
-    
+    Origem VARCHAR[100] <<FK>>
+    Chegada VARCHAR[100] <<FK>>
+    Aeronave VARCHAR <<FK>>
+    Piloto VARCHAR[100] <<FK>>
 }
 
 entity Compra{
     *id BIGINT <<PK>>
     data DATE
     valor NUMERIC[10,6]
-
+    passageiro VARCHAR[100] <<FK>>
+    voo VARCHAR[100] <<FK>>
 }
 
 entity Passageiro{
     *id BIGINT <<PK>>
+    nome VARCHAR[100]
+    cpf VARCHAR[100]
+    rg VARCHAR[100]
+    email VARCHAR[100]
     dataNascimento DATE
     nacionalidade VARCHAR[100]
     numeroPassaporte BIGINT
@@ -39,42 +47,29 @@ entity Checkin{
     *id BIGINT <<PK>>
     contatoEmergencia TEXT
     telefone VARCHAR[100]
+    assento VARCHAR[100] <<FK>> 
 }
 
 entity Assento{
     *id BIGINT <<PK>>
+    Aeronave VARCHAR[255] <<FK>>
     tipo VARCHAR[100]
     status VARCHAR[100]
 }
 
 entity Piloto{
     *id BIGINt <<PK>>
-}
-
-entity Funcionario{
-    *id BIGINT <<PK>>
     matricula BIGINT
     cargo VARCHAR[100]
-}
-
-entity Pessoa{
-    *id BIGINT <<PK>>
-    nome VARCHAR[100]
-    cpf VARCHAR[100]
-    rg VARCHAR[100]
-    email VARCHAR[100]
 }
 
 Voo ||-up-|| Aeronave
 Voo }|-left-|| Aeroporto
 Voo ||-right-|{ Piloto
-Voo ||--|{ Compra
+Voo ||-right-|{ Compra
 Compra }|--|{ Passageiro
 Compra ||--|| Checkin
 Checkin -- Assento
 Assento }-left-{ Aeronave
-Piloto -- Funcionario
-Funcionario -- Pessoa
-Passageiro -- Pessoa
 
 @enduml
