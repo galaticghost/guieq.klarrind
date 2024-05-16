@@ -1,27 +1,29 @@
 @startuml biblioteca
 title Biblioteca
 
-entity Livro{
-    *isbn VARCHAR[20] <<PK>>
-    id_Autor int <<FK>>
-    id_Editora int <<FK>>
-    id_Status int <<FK>>
-    genero VARCHAR[255]
-    paginas INT
-    ano DATE
+entity Livro #white;line.bold;line:SteelBlue{
+    *<color: SteelBlue>isbn: VARCHAR[20] <<PK>>
+    genero: VARCHAR[255]
+    paginas: INT
+    sinopse: TEXT
+    ano: DATE
+    --
+    <color: SlateBlue>id_Autor: int[10] <<FK>>
+    id_Editora: int[10] <<FK>>
+    id_Status: int[10] <<FK>>
 }
 
-entity Autor{
-    *id_Autor <<PK>>
-    nome VARCHAR[255]
-    dataDeNascimento DATE
-    livros VARCHAR[255] <<FK>>
-    editora VARCHAR[255] <<FK>>
+entity Autor #white;line.bold;line:Slateblue{
+    *<color: SlateBlue>id: int[10] <<PK>>
+    nome: VARCHAR[255]
+    dataDeNascimento: DATE
+    --
+    id_editora: int[10] <<FK>>
 }
 
 entity Editora{
-    *id_Editora int <<PK>>
-    nome VARCHAR[255]
+    *id: int[10] <<PK>>
+    nome: VARCHAR[255]
     
 }
 
@@ -46,7 +48,7 @@ entity Empréstimo{
 }
 
 Livro ||--|| Status
-Livro }|--|{ Autor
+Livro }|-[#SlateBlue]-|{ Autor
 Livro }|--o| Editora
 Livro |o--o| Cliente
 Autor }|--|{ Editora

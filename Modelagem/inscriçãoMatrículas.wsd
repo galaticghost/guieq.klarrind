@@ -4,7 +4,6 @@ title Inscrições e Matrículas
 
 entity Turma{
     * id BIGINT <<PK>>
-    --
     id_sala BIGINT <<FK>>
     id_curso BIGINT <<FK>>
     id_matricula BIGINT <<FK>>

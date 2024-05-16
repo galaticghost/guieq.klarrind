@@ -2,74 +2,93 @@
 
 title Aeroporto
 
-entity Aeroporto{
-    *id BIGINT <<PK>>
-    nome VARCHAR[100]
-    endereco TEXT
+entity Aeroporto #white;line.bold;line:Slategrey{
+    *<color: SlateGray>id: int[10] <<PK>>
+    nome: VARCHAR[100]
+    endereco: TEXT
 }
 
-entity Aeronave{
-    *id BIGINT <<PK>>
-    modelo VARCHAR[100]
-    capacidade BIGINT
+entity Aeronave #white;line.bold;line:red{
+    *<color: red>id: int[10] <<PK>>
+    modelo: VARCHAR[100]
+    capacidade: int[10]
 }
 
-entity Voo{
-    *id BIGINT <<PK>>
-    horarioPartida DATE
-    horarioChegada DATE
-    Origem VARCHAR[100] <<FK>>
-    Chegada VARCHAR[100] <<FK>>
-    Aeronave VARCHAR <<FK>>
-    Piloto VARCHAR[100] <<FK>>
+entity Voo #white;line.bold;line:ForestGreen{
+    *<color: ForestGreen>id: int[10] <<PK>>
+    horarioPartida: DATE
+    horarioChegada: DATE
+    --
+    <color: SlateGray>Origem: VARCHAR[100] <<FK>>
+    <color: SlateGray>Chegada: VARCHAR[100] <<FK>>
+    <color: red>id_Aeronave: int[10] <<FK>>
+    <color: navy>id_Piloto: int[10] <<FK>>
 }
 
-entity Compra{
-    *id BIGINT <<PK>>
-    data DATE
-    valor NUMERIC[10,6]
-    passageiro VARCHAR[100] <<FK>>
-    voo VARCHAR[100] <<FK>>
+entity Compra #white;line.bold;line:DarkMagenta{
+    *<color: DarkMagenta>id: int[10] <<PK>>
+    data: DATE
+    valor: NUMERIC[10,6]
+    --
+    <color: navy>id_Passageiro: int[10] <<FK>>
+    <color: ForestGreen>id_Voo: int[10] <<FK>>
 }
 
-entity Passageiro{
-    *id BIGINT <<PK>>
-    nome VARCHAR[100]
-    cpf VARCHAR[100]
-    rg VARCHAR[100]
-    email VARCHAR[100]
-    dataNascimento DATE
-    nacionalidade VARCHAR[100]
-    numeroPassaporte BIGINT
+entity Passageiro #white;line.bold;line:navy{
+    *<color: navy>id: int[10] <<PK>>
+    dataNascimento: DATE
+    nacionalidade: VARCHAR[100]
+    numeroPassaporte: VARCHAR[100]
 }
 
-entity Checkin{
-    *id BIGINT <<PK>>
-    contatoEmergencia TEXT
-    telefone VARCHAR[100]
-    assento VARCHAR[100] <<FK>> 
+entity Pessoa #white;line.bold;line:navy {
+    *<color: navy>id : int[10] <<PK>>
+    nome: VARCHAR[100]
+    cpf: VARCHAR[100]
+    rg: VARCHAR[100]
+    email: VARCHAR[100]
 }
 
-entity Assento{
-    *id BIGINT <<PK>>
-    Aeronave VARCHAR[255] <<FK>>
-    tipo VARCHAR[100]
-    status VARCHAR[100]
+entity Checkin #white;line.bold;line:Burlywood{
+    *<color: BurlyWood>id: int[10] <<PK>>
+    contatoEmergencia: TEXT
+    telefone: VARCHAR[100]
+    --
+    <color: SeaGreen>id_Assento: int[10] <<FK>>
+    <color: DarkMagenta>id_Compra: int[10] <<FK>> 
 }
 
-entity Piloto{
-    *id BIGINt <<PK>>
-    matricula BIGINT
-    cargo VARCHAR[100]
+entity Assento #white;line.bold;line:SeaGreen{
+    *<color: SeaGreen>id: int[10] <<PK>>
+    tipo: VARCHAR[100]
+    status: CHAR[1]
+    --
+    <color: red>id_Aeronave: int[10] <<FK>>
 }
 
-Voo ||-up-|| Aeronave
-Voo }|-left-|| Aeroporto
-Voo ||-right-|{ Piloto
-Voo ||-right-|{ Compra
-Compra }|--|{ Passageiro
-Compra ||--|| Checkin
-Checkin -- Assento
-Assento }-left-{ Aeronave
+entity Piloto #white;line.bold;line:navy{
+    *<color: navy>id int[10] <<PK>>
+    horasVoo: int[10]
+    numeroLicenca: int[10]
+    exameSaude: VARCHAR[100]
+}
+
+entity Funcionario #white;line.bold;line:navy{
+    *<color: navy>id: int[10] <<PK>>
+    matricula: BIGINT
+    cargo: VARCHAR[100]
+}
+
+Voo ||-[#red]-|| Aeronave
+Voo }|-[#SlateGray]-|| Aeroporto
+Voo ||-[#navy]-|{ Piloto
+Voo ||-[#ForestGreen]-|{ Compra
+Compra }|-[#navy]-|{ Passageiro
+Compra ||-[#DarkMagenta]-|| Checkin
+Checkin }|-[#SeaGreen]-|| Assento
+Assento }|-[#red]-|{ Aeronave
+Piloto ||-[#navy]-|| Funcionario
+Funcionario ||-[#navy]-|| Pessoa
+Passageiro ||-[#navy]-|| Pessoa
 
 @enduml

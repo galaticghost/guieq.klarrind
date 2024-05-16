@@ -1,0 +1,35 @@
+@startuml Realizar Empréstimo
+title Estacionamento
+
+Actor "Administrador" as Ator1
+Actor "Cliente" as Ator2
+Actor "Atendente" as Ator3
+
+usecase "Inserir Veículo" as CasoU1
+usecase "Cadastrar Taxas" as CasoU2
+usecase "Verificar Veículo" as CasoU3
+usecase "Verificar Vagas" as CasoU4
+usecase "Validar Desconto" as CasoU5
+usecase "Calcular Valor" as CasoU7
+usecase "Realizar Pagamento" as CasoU8
+
+note right of CasoU1 
+    Placa, modelo, 
+    tipo de veículo, 
+    horário, data de entrada 
+    e tipo de serviço 
+end note
+
+
+Ator1 -- CasoU2
+Ator1 -- CasoU1
+Ator3 -- CasoU1
+Ator1 -- CasoU5
+Ator1 -left- CasoU8
+Ator3 -- CasoU8
+Ator1 -left- CasoU7
+Ator3 -right- CasoU7
+Ator1 -- CasoU4
+Ator3 -- CasoU4
+CasoU1 -.> CasoU3: <<include>>
+@enduml
