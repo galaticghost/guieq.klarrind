@@ -1,0 +1,20 @@
+@startuml Teste 
+
+title Teste Atividade
+
+start
+fork
+:bolamen;
+if (bola) then (yes)
+    :bolamen;
+elseif (xiname) then (xinamen)
+    :bolaguy;
+else (xii)
+    :bolaisdead;
+endif
+fork again
+:bolajoe;
+end fork
+stop
+
+@enduml

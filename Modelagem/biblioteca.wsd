@@ -6,51 +6,50 @@ entity Livro #white;line.bold;line:SteelBlue{
     genero: VARCHAR[255]
     paginas: INT
     sinopse: TEXT
+    sessao: VARCHAR[255]
     ano: DATE
+    status: CHAR[1]
     --
-    <color: SlateBlue>id_Autor: int[10] <<FK>>
-    id_Editora: int[10] <<FK>>
-    id_Status: int[10] <<FK>>
+    <color: SlateBlue>id_Autor: INT[10] <<FK>>
+    <color: Red>id_Editora: INT[10] <<FK>>
+    <color: Green>id_Emprestimo: INT[10] <<FK>>
 }
 
 entity Autor #white;line.bold;line:Slateblue{
     *<color: SlateBlue>id: int[10] <<PK>>
     nome: VARCHAR[255]
     dataDeNascimento: DATE
-    --
-    id_editora: int[10] <<FK>>
+
+
 }
 
-entity Editora{
-    *id: int[10] <<PK>>
+entity Editora #white;line.bold;line:Red{
+    *<color: Red>id: INT[10] <<PK>>
     nome: VARCHAR[255]
+    cnpj: VARCHAR[255]
+    cep: VARCHAR[255]
     
 }
 
-entity Cliente{
-    *id_Cliente int <<PK>>
-    isbn VARCHAR[20] <<FK>>
-    nome VARCHAR[255]
-    cpf VARCHAR[20]
+entity Empréstimo #white;line.bold;line:Green{
+    *<color: Green>id: int[10] <<PK>>
+    dataDeRetirada: DATE
+    vencimento: DATE  
+    --
+    <color: Orange>id_Cliente INT [10] <<FK>>
+    <color: SteelBlue>isbn VARCHAR[20] <<FK>>
 }
 
-entity Status{
-    *id_Status int <<PK>>
-    id_Cliente int <<FK>>
-    id_Emprestimo <<FK>>
-    Status CHAR[1]
+entity Cliente #white;line.bold;line:Orange{
+    *<color: Orange>id_Cliente: INT[10] <<PK>>
+    nome: VARCHAR[255]
+    cpf: VARCHAR[20]
+    --
+    <color: Green>id_Emprestimo: INT [10] <<FK>>
 }
 
-entity Empréstimo{
-    id_Emprestimo int <<PK>>
-    dataDeRetirada DATE
-    dataDeEntrega DATE    
-}
-
-Livro ||--|| Status
 Livro }|-[#SlateBlue]-|{ Autor
-Livro }|--o| Editora
-Livro |o--o| Cliente
-Autor }|--|{ Editora
-Status ||--o| Empréstimo
+Livro }|-[#Red]-o| Editora
+Livro ||-[#SteelBlue]-o| Empréstimo
+Cliente ||-[#Orange]-o{ Empréstimo
 @enduml
