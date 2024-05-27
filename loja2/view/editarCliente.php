@@ -17,33 +17,38 @@ else{
 </head>
 <body>
     <h1>Editar cliente</h1>
+    
     <?php
-    if(isset($_GET['nome'])){
-        $controlador = new clienteController();
-        $controlador->consultarNome($id);
-        $nome = $_GET['nome'];
-        echo "<h2>$nome</h2>";
-    }?>
+    $controlador = new clienteController();
+    $nome = $controlador->consultarNome($id);
+    $nome = mysqli_fetch_row($nome);
+    echo "<h2>$nome[0]</h2>";
+    ?>
+
         <form method="POST" action ="../controller/clienteController.php?action=editarCliente&id=<?php echo $id;?>&type=nome">
             Nome: <input type="text" placeholder="Digite o nome do cliente..." name="novoValor" />
             <input type="submit" value="Salvar" />
             <input type="reset" value="Limpar" />
         </form>
+        
         <form method="POST" action ="../controller/clienteController.php?action=editarCliente&id=<?php echo $id;?>&type=dataDeNascimento">
             Data de nascimento: <input type="date" name="novoValor" />
             <input type="submit" value="Salvar" />
             <input type="reset" value="Limpar" />
         </form>
+        
         <form method="POST" action ="../controller/clienteController.php?action=editarCliente&id=<?php echo $id;?>&type=salario">
             Salário: <input type="number" step="0.01" name="novoValor" />
             <input type="submit" value="Salvar" />
             <input type="reset" value="Limpar" />
         </form>
+        
         <form method="POST" action ="../controller/clienteController.php?action=editarCliente&id=<?php echo $id;?>&type=codCidade">
             Código cidade: <input type="number" name="novoValor" />
             <input type="submit" value="Salvar" />
             <input type="reset" value="Limpar" />
         </form>
+        
         <a href="clientes.php"><button>Voltar</button></a>
 </body>
 </html>

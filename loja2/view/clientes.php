@@ -7,6 +7,7 @@
 </head>
 <body>
     <h1>Clientes</h1>
+    
     <form method="POST" action="../controller/clienteController.php?action=inserirCliente" >
         <label>Nome: </label>
         <input type="text" placeholder="Digite o nome do cliente..." name="txtNome" required />
@@ -23,33 +24,47 @@
         <input type="submit" value="Salvar" />
         <input type="reset" value="Limpar" />
     </form>
+    
     <a href="admin.php"><button>Voltar</button></a>
+    
     <table border ="1">
         <tr>
             <th>Id</th>
             <th>Nome</th>
             <th>Data de nascimento</th>
             <th>Salario</th>
+            <th>CidadeID</th>
             <th>Cidade</th>
         </tr> 
+    
     <?php
     require_once("../controller/clienteController.php");
+    
     $result = clienteController::consultar(); 
+    
     foreach($result as $linha){
         $id = $linha['id'];
+        
         $nome = $linha['nome'];
+        
         $dataDeNascimento = $linha['dataDeNascimento'];
         $dataDeNascimento = date('d/m/Y', strtotime($dataDeNascimento));
+        
         $salario = $linha['salario'];
         $salario = number_format($salario,2, ',', '.');
+        
         $codCidade = $linha['codCidade'];
+
+        $cidadeNome = $linha['nomeCidade'];
+        
         echo"<tr>
                 <td>" . $id . "</td>
                 <td>" . $nome . "</td>
                 <td>" . $dataDeNascimento . "</td>
                 <td> R$" . $salario . "</td>
                 <td>" . $codCidade . "</td>
-                <td><a href ='editarCliente.php?id=$id&nome=$nome'><button>editar</button></a></td>
+                <td>" . $cidadeNome . "</td>
+                <td><a href ='editarCliente.php?id=$id'><button>editar</button></a></td>
                 <td><a href ='../controller/clienteController.php?action=excluirCliente&id=$id'onclick='return confirm(\"Tem certeza?\")'><button>excluir</button></a></td>
                 </tr>";
         }
@@ -59,12 +74,15 @@
         $nome = $_GET['nome'];
         echo "<script>alert('O cliente $nome foi registrado com sucesso!');</script>";
     }
+    
     if(isset($_GET['nomeVazio'])){
         echo "<script>alert('Há campos vazios');</script>";
     }
+    
     if(isset($_GET['erro'])){
         echo "<script>alert('Deu pau no sistema');</script>";
     }
+    
     if(isset($_GET['excluido'])){
         echo "<script>alert('Cliente excluído com sucesso!');</script>";
     }

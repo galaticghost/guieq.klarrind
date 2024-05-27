@@ -36,7 +36,8 @@ class clienteController{
         $valor = $_POST['novoValor']; // valor sendo o dado a ser modificado
         $type = $_GET['type']; // e type o tipo do valor a ser modificado (Resumindo a coluna)
         $novoCli = new Cliente();
-        $novoCli->editar($type,$valor,$id);
+        $novoCli->editar($type,$valor,$id)
+        or die("pane no sistema");
     }
     
     public function excluirCliente(){

@@ -15,6 +15,7 @@
         <input type="submit" value="Salvar" />
         <input type="reset" value="Limpar" />
     </form>
+    
     <a href="admin.php"><button>Voltar</button></a>
 
     <table border ="1">
@@ -25,6 +26,7 @@
     
     <?php
     require_once("../controller/cidadeController.php");    
+    
     $result = CidadeController::consultar();
     foreach($result as $linha){
         $id = $linha['id'];
@@ -55,6 +57,7 @@
     if(isset($_GET["editar"])){
         echo "<script> alert('Cidade editada com sucesso!'); </script>";
     }
+    
     if(isset($_GET["excluir"])){
         echo "<script> alert('Cidade excluida com sucesso!'); </script>";
     }

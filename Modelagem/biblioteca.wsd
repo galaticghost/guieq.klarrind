@@ -4,7 +4,7 @@ title Biblioteca
 entity Livro #white;line.bold;line:SteelBlue{
     *<color: SteelBlue>isbn: VARCHAR[20] <<PK>>
     genero: VARCHAR[255]
-    paginas: INT
+    paginas: INT[5]
     sinopse: TEXT
     sessao: VARCHAR[255]
     ano: DATE
