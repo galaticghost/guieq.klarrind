@@ -6,6 +6,9 @@
     <title>Loja - Cidades</title>
 </head>
 <body>
+    
+    <?php require_once('admin.php'); ?>
+    
     <h1>Cidades</h1>
 
     <form method="POST" action="../controller/cidadeController.php?action=inserirCidade" >
@@ -16,8 +19,6 @@
         <input type="reset" value="Limpar" />
     </form>
     
-    <a href="admin.php"><button>Voltar</button></a>
-
     <table border ="1">
         <tr>
             <th>Id</th>

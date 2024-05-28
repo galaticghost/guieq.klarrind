@@ -1,2 +1,2 @@
 <?php
-header ("Location: view/admin.php");
+header ("Location: view/index.php");

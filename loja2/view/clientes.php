@@ -6,6 +6,7 @@
     <title>Clientes</title>
 </head>
 <body>
+<?php require_once('admin.php'); ?>
     <h1>Clientes</h1>
     
     <form method="POST" action="../controller/clienteController.php?action=inserirCliente" >
@@ -18,14 +19,22 @@
         <label>Salário: </label>
         <input type="number" step="0.01" name="txtSalario" required />
         <br>
-        <label>Código cidade:</label>
-        <input type="number" name="txtCodCidade" required />
+        <label>Cidade:</label>
+        <select name="txtCodCidade">
+            <option value = "0">Selecione...</option>
+        <?php
+        require_once("../controller/cidadeController.php");
+        $cidade = new cidadeController();
+        $cidade = $cidade->consultarCidades();
+        foreach($cidade as $cidades){
+            echo '<option value="'. $cidades['id'] .'">'. $cidades['nome'] .'</option>';
+        }
+        ?>
+        </select>
         <br>
         <input type="submit" value="Salvar" />
         <input type="reset" value="Limpar" />
     </form>
-    
-    <a href="admin.php"><button>Voltar</button></a>
     
     <table border ="1">
         <tr>
@@ -33,7 +42,6 @@
             <th>Nome</th>
             <th>Data de nascimento</th>
             <th>Salario</th>
-            <th>CidadeID</th>
             <th>Cidade</th>
         </tr> 
     
@@ -52,8 +60,6 @@
         
         $salario = $linha['salario'];
         $salario = number_format($salario,2, ',', '.');
-        
-        $codCidade = $linha['codCidade'];
 
         $cidadeNome = $linha['nomeCidade'];
         
@@ -62,7 +68,6 @@
                 <td>" . $nome . "</td>
                 <td>" . $dataDeNascimento . "</td>
                 <td> R$" . $salario . "</td>
-                <td>" . $codCidade . "</td>
                 <td>" . $cidadeNome . "</td>
                 <td><a href ='editarCliente.php?id=$id'><button>editar</button></a></td>
                 <td><a href ='../controller/clienteController.php?action=excluirCliente&id=$id'onclick='return confirm(\"Tem certeza?\")'><button>excluir</button></a></td>

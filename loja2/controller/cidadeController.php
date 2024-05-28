@@ -9,6 +9,12 @@ class CidadeController{
         return $result;
     }
     
+    public function consultarCidades(){
+        $novoCid = new cidade();
+        $result = $novoCid->consultaCidades();
+        return $result;
+    }
+    
     public function inserir(){
         $nome = $_POST['txtNome'];
         if(strlen( $nome ) == 0){
@@ -19,7 +25,7 @@ class CidadeController{
             $novaCid->inserir($nome);
         }
         else{
-            header("Location: ../view/cidades.php?nome=erro");
+            header("Location: ../view/cidades.php?erro");
         }
     }
     

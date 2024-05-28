@@ -1,5 +1,6 @@
 <?php
 include_once("../controller/clienteController.php");
+require_once('admin.php');
 if (isset($_GET['id'])){
     $id = $_GET['id'];
 }
@@ -49,6 +50,5 @@ else{
             <input type="reset" value="Limpar" />
         </form>
         
-        <a href="clientes.php"><button>Voltar</button></a>
 </body>
 </html>

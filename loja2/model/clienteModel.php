@@ -58,7 +58,7 @@ class Cliente extends conexao {
     }
     
     public function consulta(){
-        $sql = "SELECT cliente.*, cidade.nome AS nomeCidade FROM cliente LEFT JOIN cidade ON cidade.id = cliente.codCidade ORDER BY cliente.nome";
+        $sql = "SELECT cliente.id, cliente.nome, cliente.salario, cliente.dataDeNascimento, cliente.codCidade, cidade.nome AS nomeCidade FROM cliente LEFT JOIN cidade ON cidade.id = cliente.codCidade ORDER BY cliente.nome";
         $result = $this->conn->query($sql)
         or die ("Falha na consulta");
         $this->conn->close();

@@ -24,7 +24,7 @@ Class Cidade extends conexao{
 	}
 //consulta no banco
 	public function consulta(){
-		$sql = "SELECT id,nome FROM $this->tabela";
+		$sql = "SELECT id,nome FROM $this->tabela ORDER BY nome";
 		$result = $this->conn->query($sql)
 		or die("Falha na consulta.");
 		if($result == true){
@@ -32,6 +32,16 @@ Class Cidade extends conexao{
 		}
 		$this->conn->close();
 	}
+	
+    public function consultaCidades(){
+        $sql = "SELECT id,nome FROM $this->tabela";
+        $result = $this->conn->query($sql)
+        or die ("Falha na consulta");
+        $this->conn->close();
+        if($result == true){
+            return $result;
+        }
+    }
 	
 	public function inserir($nome){
 		$sql = "INSERT INTO $this->tabela(nome) VALUES (?);";
@@ -73,17 +83,3 @@ Class Cidade extends conexao{
 		}
 	}
 }
-/*public function inserir($nome){
-	$sql = "INSERT INTO $this->tabela(nome) VALUES(?)";
-	$stmt = $this->conn->prepare($sql);
-	$stmt->bind_param('s',$nome);
-	$stmt->execute();
-	
-	if($stmt == true){
-		header( "Location: ../cidades.php?nome=$nome");
-	}else{
-		die("Falha no cadastro!");
-	}
-	$stmt->close();
-	$this->conn->close();
-}*/
