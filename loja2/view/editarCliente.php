@@ -26,26 +26,23 @@ else{
     echo "<h2>$nome[0]</h2>";
     ?>
 
-        <form method="POST" action ="../controller/clienteController.php?action=editarCliente&id=<?php echo $id;?>&type=nome">
-            Nome: <input type="text" placeholder="Digite o nome do cliente..." name="novoValor" />
-            <input type="submit" value="Salvar" />
-            <input type="reset" value="Limpar" />
-        </form>
-        
-        <form method="POST" action ="../controller/clienteController.php?action=editarCliente&id=<?php echo $id;?>&type=dataDeNascimento">
-            Data de nascimento: <input type="date" name="novoValor" />
-            <input type="submit" value="Salvar" />
-            <input type="reset" value="Limpar" />
-        </form>
-        
-        <form method="POST" action ="../controller/clienteController.php?action=editarCliente&id=<?php echo $id;?>&type=salario">
-            Salário: <input type="number" step="0.01" name="novoValor" />
-            <input type="submit" value="Salvar" />
-            <input type="reset" value="Limpar" />
-        </form>
-        
-        <form method="POST" action ="../controller/clienteController.php?action=editarCliente&id=<?php echo $id;?>&type=codCidade">
-            Código cidade: <input type="number" name="novoValor" />
+        <form method="POST" action ="../controller/clienteController.php?action=editarCliente&id=<?php echo $id;?>">
+            Nome: <input type="text" placeholder="Digite o nome do cliente..." name="nome" /> <br>
+            Data de nascimento: <input type="date" name="dataDeNascimento" /> <br>
+            Salário: <input type="number" step="0.01" name="salario" /> <br>
+            <label>Cidade</label>
+            <select name = "codCidade">
+                <option value = "0">Selecione...</option>
+            <?php
+            require_once("../controller/cidadeController.php");
+            $cidade = new CidadeController();
+            $cidade = $cidade->consultarCidades();
+            foreach ($cidade as $cidades){
+                echo '<option value ="' . $cidades['id'] . '">'. $cidades['nome'] . '</option>';
+            }
+            ?>
+            </select>
+            <br>
             <input type="submit" value="Salvar" />
             <input type="reset" value="Limpar" />
         </form>

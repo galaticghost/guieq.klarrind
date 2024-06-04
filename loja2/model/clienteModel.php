@@ -67,14 +67,14 @@ class Cliente extends conexao {
         }
     }
     
-    public function editar($type,$valor,$id){
-        $sql = "UPDATE cliente SET $type = '$valor' WHERE id = ?";
+    public function editar($id,$nome,$dataDeNascimento,$salario,$codCidade){
+        $sql = "UPDATE cliente SET nome = ?, dataDeNascimento = ?, salario = ?, codCidade = ? WHERE id = ?";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param('i',$id);
+        $stmt->bind_param('ssdii',$nome,$dataDeNascimento,$salario,$codCidade,$id);
         $stmt->execute();
         $stmt->close();
         if($stmt == true){
-            header("Location: ../view/editarCliente.php?id=$id");
+            header("Location: ../view/clientes.php?editado");
         }
         else{
             die("Falha na edição.");
@@ -94,9 +94,18 @@ class Cliente extends conexao {
             die("Falha na exclusão.");
         }
     }
-    
+    //Apenas Nome
     public function consultaNome($id){
         $sql = "SELECT nome FROM cliente WHERE id = $id;";
+        $result = $this->conn->query($sql);
+        $this->conn->close();
+        if($result == true){
+            return $result;
+        }
+    }
+    //Linha completa
+    public function consultaNomeCompleta($id){
+        $sql = "SELECT id,nome,dataDeNascimento,salario,codCidade FROM cliente WHERE id = $id;";
         $result = $this->conn->query($sql);
         $this->conn->close();
         if($result == true){

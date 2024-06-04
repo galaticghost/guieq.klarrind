@@ -12,7 +12,6 @@ entity Livro #white;line.bold;line:SteelBlue{
     --
     <color: SlateBlue>id_Autor: INT[10] <<FK>>
     <color: Red>id_Editora: INT[10] <<FK>>
-    <color: Green>id_Emprestimo: INT[10] <<FK>>
 }
 
 entity Autor #white;line.bold;line:Slateblue{
@@ -32,7 +31,7 @@ entity Editora #white;line.bold;line:Red{
 }
 
 entity Empréstimo #white;line.bold;line:Green{
-    *<color: Green>id: int[10] <<PK>>
+    *<color: Green>id: INT[10] <<PK>>
     dataDeRetirada: DATE
     vencimento: DATE  
     --

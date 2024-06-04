@@ -1,3 +1,9 @@
+<?php
+session_start();
+if (!isset($_SESSION['logado']) || $_SESSION == false){
+    header("Location: ../index.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-Br">
 <head>
@@ -90,6 +96,10 @@
     
     if(isset($_GET['excluido'])){
         echo "<script>alert('Cliente excluído com sucesso!');</script>";
+    }
+
+    if(isset($_GET['editado'])){
+        echo "<script>alert('Cliente editado com sucesso!');</script>";
     }
     ?>
 </body>
