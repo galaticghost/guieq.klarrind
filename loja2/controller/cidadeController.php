@@ -5,14 +5,12 @@ require_once("../model/cidadeModel.php");
 class CidadeController{
     public static function consultar(){
         $cidade = new cidade();
-        $result = $cidade->consulta();
-        return $result;
+        return $cidade->consulta();
     }
     
     public function consultarCidades(){
         $novoCid = new cidade();
-        $result = $novoCid->consultaCidades();
-        return $result;
+        return $novoCid->consultaCidades();
     }
     
     public function inserir(){

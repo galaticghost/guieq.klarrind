@@ -13,6 +13,8 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] /*true*/ ){
 	<button>Cidades</button></a> 
 <a href="clientes.php" >
 	<button>Clientes</button></a>
+<a href="produtos.php" >
+	<button>Produtos</button></a>
 <a href="../controller/sair.php" >
 	<button>Sair</button></a>
 	| Olá <?php echo $_SESSION['nome'];?>

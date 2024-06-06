@@ -12,7 +12,7 @@ class clienteController{
         }
         elseif($_SERVER['REQUEST_METHOD'] === 'POST'){
             $novoCli = new Cliente();
-        $novoCli->inserir($nome,$dataDeNascimento,$salario,$codCidade);
+            $novoCli->inserir($nome,$dataDeNascimento,$salario,$codCidade);
         }
         else{
             header("Location: ../view/clientes.php?erro");
@@ -21,20 +21,17 @@ class clienteController{
     
     public static function consultar(){
         $novoCli = new Cliente();
-        $result = $novoCli->consulta();
-        return $result;
+        return $novoCli->consulta();
     }
 // Só o nome    
     public function consultarNome($id){
         $novoCli = new Cliente();
-        $result = $novoCli->consultaNome($id);
-        return $result;
+        return $novoCli->consultaNome($id);
     }
 //Linha completa
     public function consultarNomeCompleta($id){
         $novoCli = new Cliente();
-        $result = $novoCli->consultaNomeCompleta($id);
-        return $result;
+        return $novoCli->consultaNomeCompleta($id);
     }
    
     public function editarCliente(){
@@ -54,7 +51,7 @@ class clienteController{
         if ($_POST['salario'] != NULL){
             $salario = $_POST['salario'];
         }
-        if ($_POST['codCidade'] != NULL){
+        if ($_POST['codCidade'] != 0){
             $codCidade = $_POST['codCidade'];
         }
         $novoCli = new Cliente();

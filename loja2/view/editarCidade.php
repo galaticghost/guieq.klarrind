@@ -1,12 +1,17 @@
 <?php
-    require_once('admin.php');
+session_start();
+if (!isset($_SESSION['logado']) || $_SESSION == false){
+    header("Location: ../index.php");
+}
 
-    if(isset($_GET['id'])){
-        $id = $_GET['id'];
-    }
-    else{
-        die("Sem id");
-    }
+require_once('admin.php');
+
+if(isset($_GET['id'])){
+    $id = $_GET['id'];
+}
+else{
+    die("Sem id");
+}
 ?>
 
 <!DOCTYPE html>

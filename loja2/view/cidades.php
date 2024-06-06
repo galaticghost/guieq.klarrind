@@ -10,13 +10,13 @@ if (!isset($_SESSION['logado']) || $_SESSION == false){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loja - Cidades</title>
+    <title>Cidades</title>
 </head>
 <body>
     
     <?php require_once('admin.php'); ?>
     
-    <h1>Cidades</h1>
+    <h1>Cadastrar Cidades</h1>
 
     <form method="POST" action="../controller/cidadeController.php?action=inserirCidade" >
         <label>Nome: </label>

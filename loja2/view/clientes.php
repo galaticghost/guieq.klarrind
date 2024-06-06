@@ -13,7 +13,7 @@ if (!isset($_SESSION['logado']) || $_SESSION == false){
 </head>
 <body>
 <?php require_once('admin.php'); ?>
-    <h1>Clientes</h1>
+    <h1>Cadastrar Clientes</h1>
     
     <form method="POST" action="../controller/clienteController.php?action=inserirCliente" >
         <label>Nome: </label>

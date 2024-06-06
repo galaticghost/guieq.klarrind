@@ -1,6 +1,13 @@
 <?php
+session_start();
+if (!isset($_SESSION['logado']) || $_SESSION == false){
+    header("Location: ../index.php");
+}
+
 include_once("../controller/clienteController.php");
+
 require_once('admin.php');
+
 if (isset($_GET['id'])){
     $id = $_GET['id'];
 }

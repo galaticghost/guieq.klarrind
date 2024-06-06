@@ -2,9 +2,29 @@
 require_once("conexao.php");
 
 class Usuario extends conexao {
-    public $nome;
-    public $email;
-    public $admin;
+    private $nome;
+    private $email;
+    private $admin;
+    
+    public function getNome(){
+        return $this->nome;
+    }
+
+    public function setNome($nome){
+        $this->nome = $nome;
+    }
+
+    public function getEmail(){
+        return $this->email;
+    }
+
+    public function setEmail($email){
+        $this->email = $email;
+    }
+
+    public function getAdmin(){
+        return $this->admin;
+    }
     
     public function logar($email,$senha){
         $sql = "SELECT nome,email,admin FROM usuario WHERE email = ? AND senha = ?;";
