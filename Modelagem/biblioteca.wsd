@@ -1,54 +1,59 @@
 @startuml biblioteca
 title Biblioteca
 
-entity Livro #white;line.bold;line:SteelBlue{
-    *<color: SteelBlue>isbn: VARCHAR[20] <<PK>>
-    genero: VARCHAR[255]
-    paginas: INT[5]
-    sinopse: TEXT
-    sessao: VARCHAR[255]
-    ano: DATE
-    status: CHAR[1]
+entity livro #white;line.bold;line:SteelBlue{
+    *<color: SteelBlue>isbn: VARCHAR[20] <<PK>> NOT NULL
+    titulo: VARCHAR[100] NOT NULL
+    genero: VARCHAR[255] NOT NULL
+    paginas: INT[5] NOT NULL
+    sinopse: TEXT NOT NULL
+    secao: VARCHAR[255] NOT NULL
+    ano: DATE NOT NULL
+    status: CHAR[1] NOT NULL
     --
     <color: SlateBlue>id_Autor: INT[10] <<FK>>
     <color: Red>id_Editora: INT[10] <<FK>>
 }
 
-entity Autor #white;line.bold;line:Slateblue{
-    *<color: SlateBlue>id: int[10] <<PK>>
-    nome: VARCHAR[255]
-    dataDeNascimento: DATE
-
-
+entity autor #white;line.bold;line:Slateblue{
+    *<color: SlateBlue>id: INT[10] <<PK>> NOT NULL AUTO_INCREMENT
+    nome: VARCHAR[255] NOT NULL
+    dataDeNascimento: DATE NOT NULL
 }
 
-entity Editora #white;line.bold;line:Red{
-    *<color: Red>id: INT[10] <<PK>>
-    nome: VARCHAR[255]
-    cnpj: VARCHAR[255]
-    cep: VARCHAR[255]
-    
+entity editora #white;line.bold;line:Red{
+    *<color: Red>id: INT[10] <<PK>> NOT NULL AUTO_INCREMENT
+    nome: VARCHAR[255] NOT NULL
+    cnpj: VARCHAR[255] NOT NULL
+    endereco: TEXT NOT NULL
 }
 
-entity Empréstimo #white;line.bold;line:Green{
-    *<color: Green>id: INT[10] <<PK>>
-    dataDeRetirada: DATE
-    vencimento: DATE  
+entity emprestimo #white;line.bold;line:Green{
+    *<color: Green>id: INT[10] <<PK>> NOT NULL AUTO_INCREMENT
+    dataDeRetirada: DATE NOT NULL
+    vencimento: DATE NOT NULL
     --
     <color: Orange>id_Cliente INT [10] <<FK>>
     <color: SteelBlue>isbn VARCHAR[20] <<FK>>
 }
 
-entity Cliente #white;line.bold;line:Orange{
-    *<color: Orange>id_Cliente: INT[10] <<PK>>
-    nome: VARCHAR[255]
-    cpf: VARCHAR[20]
-    --
-    <color: Green>id_Emprestimo: INT [10] <<FK>>
+entity cliente #White;line.bold;line:Orange{
+    *<color: Orange>id: INT[10] <<PK>> NOT NULL AUTO_INCREMENT
+    nome: VARCHAR[255] NOT NULL
+    cpf: VARCHAR[20] NOT NULL
 }
 
-Livro }|-[#SlateBlue]-|{ Autor
-Livro }|-[#Red]-o| Editora
-Livro ||-[#SteelBlue]-o| Empréstimo
-Cliente ||-[#Orange]-o{ Empréstimo
+entity biblioteca #white;line.bold;line:Black{
+    *<color: Black>id: INT[10] <<PK>> NOT NULL AUTO_INCREMENT
+    nome: VARCHAR[100] NOT NULL
+    endereco: TEXT NOT NULL
+    telefone: VARCHAR[20] NOT NULL
+
+}
+
+livro }|-[#SlateBlue]up-|{ autor
+livro }|-[#Red]-o{ editora
+livro ||-[#SteelBlue]-o| emprestimo
+cliente ||-[#Orange]-o{ emprestimo
+biblioteca ||--|{ emprestimo
 @enduml

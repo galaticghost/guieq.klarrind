@@ -1,0 +1,7 @@
+@startuml Cinema
+
+title Cinema
+
+entity 
+
+@enduml

@@ -1,0 +1,37 @@
+@startuml Sistema Bancário
+
+title Sistema Bancário
+
+entity cliente {
+    *id: BIGINT NOT NULL AUTO_INCREMENT <<PK>>
+    nome: VARCHAR[200] NOT NULL
+    cpf: VARCHAR[20] NOT NULL
+    dataDeNascimento: VARCHAR[20] NOT NULL
+    telefone: VARCHAR[20] NOT NULL
+    --
+
+}
+
+entity contaBancaria{
+    *id: BIGINT NOT NULL AUTO_INCREMENT
+    
+    tipo: VARCHAR[50] NOT NULL
+    --
+    id_cliente: BIGINT NOT NULL <<FK>>
+}
+
+entity agencia {
+    *id: BIGINT NOT NULL AUTO_INCREMENT
+}
+
+entity banco{
+    *id: BIGINT NOT NULL AUTO_INCREMENT
+}
+
+
+cliente ||--|{ contaBancaria
+contaBancaria }|--|| agencia
+agencia }|--|| banco
+
+
+@enduml
