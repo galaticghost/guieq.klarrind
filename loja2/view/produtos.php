@@ -52,6 +52,25 @@ foreach($consulta as $produto){
     <td><a href ='../controller/produtoController.php?action=excluirProduto&id=$id'onclick='return confirm(\"Tem certeza?\")'><button>excluir</button></a></td>
     </tr>";
 }
+
+if (isset($_GET['nome'])){
+    $nome = $_GET['nome'];
+    echo "<script>alert('Produto $nome adicionado com sucesso!');</script>";
+}
+
+if (isset($_GET['erro'])){
+    echo"<script>alert('Pane no sistema.');</script>";
+}
+
+if (isset($_GET['editado'])){
+    $nome = $_GET['nome'];
+    echo "<script>alert('Produto $nome editado com sucesso!');</script>";
+}
+
+if (isset($_GET['excluido'])){
+    echo "<script>alert('Produto excluido com sucesso!');</script>";
+}
 ?>
+
 </body>
 </html>
