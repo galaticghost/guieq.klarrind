@@ -25,8 +25,9 @@ else{
     <h1>Editar Produto</h1>
 
         <form method="POST" action ="../controller/produtoController.php?action=editarProduto&id=<?php echo $id;?>">
-            Nome: <input type="text" placeholder="Digite o nome do cliente..." name="nome" /> <br>
-            Valor: <input type="number" placeholder="Digite o valor do produto" step="0.01" name="valor"/> <br>
+            Nome: <input type="text" placeholder="Digite o nome do cliente..." name="nome" /> <br><br>
+            Valor: <input type="number" placeholder="Digite o valor do produto" step="0.01" name="valor"/> <br><br>
+            Descrição: <textarea name="descricao" ></textarea> <br><br>
             <input type="submit" value="Salvar" />
             <input type="reset" value="Limpar" />
         </form>

@@ -16,13 +16,16 @@ if (!isset($_SESSION['logado']) || $_SESSION == false){
 <?php require_once('admin.php'); ?>
 <h1>Cadastrar Produtos</h1>
 
-<form method="POST" action="../controller/produtoController.php?action=inserirProduto" >
+<form method="POST" action="../controller/produtoController.php?action=inserirProduto">
     <label>Nome: </label>
-        <input type="text" placeholder="Digite o nome do produto" name="nome" required >
-    <br>
+        <input type="text" placeholder="Digite o nome do produto" name="nome" required>
+    <br><br>
     <label>Valor: </label>
-        <input type="number" placeholder="Digite o valor do produto" name = "valor" step="0.01" requried>
-    <br>
+        <input type="number" placeholder="Digite o valor do produto" name="valor" step="0.01" requried>
+    <br><br>
+    <label>Descrição: </label>
+        <textarea name="descricao" required></textarea>
+    <br><br>
     <input type="submit" value="Salvar" />
     <input type="reset" value="Limpar" />
 </form>
@@ -32,6 +35,9 @@ if (!isset($_SESSION['logado']) || $_SESSION == false){
             <th>Id</th>
             <th>Nome</th>
             <th>Valor</th>
+            <th>Descrição</th>
+            <th>Editar</th>
+            <th>Excluir</th>
         </tr>
 
 <?php
@@ -44,16 +50,19 @@ foreach($consulta as $produto){
     $valor = $produto['valor'];
     $valor = number_format($valor,2, ',', '.');
 
+    $descricao = $produto['descricao'];
+
     echo "<tr>
     <td>" . $id . "</td>
     <td>" . $nome . "</td>
     <td>" . $valor . "</td>
+    <td>" . $descricao . "</td>
     <td><a href ='editarProduto.php?id=$id'><button>editar</button></a></td>
     <td><a href ='../controller/produtoController.php?action=excluirProduto&id=$id'onclick='return confirm(\"Tem certeza?\")'><button>excluir</button></a></td>
     </tr>";
 }
 
-if (isset($_GET['nome'])){
+if (isset($_GET['nome']) && !isset($_GET['editado'])){
     $nome = $_GET['nome'];
     echo "<script>alert('Produto $nome adicionado com sucesso!');</script>";
 }
@@ -69,6 +78,10 @@ if (isset($_GET['editado'])){
 
 if (isset($_GET['excluido'])){
     echo "<script>alert('Produto excluido com sucesso!');</script>";
+}
+
+if(isset($_GET['camposVazios'])){
+    echo "<script>alert('Campos Vazios!');</script>";
 }
 ?>
 

@@ -8,7 +8,6 @@ class Cliente extends conexao {
     private $dataDeNascimento;
     private $salario;
     private $codCidade;
-    private $tabela = 'cliente';
 
     public function __construct(){
         parent::__construct();    
@@ -43,7 +42,7 @@ class Cliente extends conexao {
     }
 
     public function inserir($nome, $dataDeNascimento, $salario, $codCidade){
-        $sql = "INSERT INTO $this->tabela(nome, dataDeNascimento, salario ,codCidade) VALUES 
+        $sql = "INSERT INTO cliente(nome, dataDeNascimento, salario ,codCidade) VALUES 
         (?,?,?,?);";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param('ssdi',$nome,$dataDeNascimento,$salario,$codCidade);

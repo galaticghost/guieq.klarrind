@@ -4,7 +4,6 @@ require_once("conexao.php");
 Class Cidade extends conexao{
 	private $id;
 	private $nome;
-	private $tabela = "cidade";
 
 	public function __construct(){
 		parent::__construct();
@@ -22,9 +21,9 @@ Class Cidade extends conexao{
 	public function setNome($nome){
 		$this->nome = $nome;
 	}
-//consulta no banco
+
 	public function consulta(){
-		$sql = "SELECT id,nome FROM $this->tabela ORDER BY nome";
+		$sql = "SELECT id,nome FROM cidade ORDER BY nome";
 		$result = $this->conn->query($sql)
 		or die("Falha na consulta.");
 		if($result == true){
@@ -34,17 +33,16 @@ Class Cidade extends conexao{
 	}
 	
     public function consultaCidades(){
-        $sql = "SELECT id,nome FROM $this->tabela";
+        $sql = "SELECT id,nome FROM cidade";
         $result = $this->conn->query($sql)
         or die ("Falha na consulta");
-        $this->conn->close();
         if($result == true){
-            return $result;
+			return $result;
         }
     }
 	
 	public function inserir($nome){
-		$sql = "INSERT INTO $this->tabela(nome) VALUES (?);";
+		$sql = "INSERT INTO cidade(nome) VALUES (?);";
 		$stmt = $this->conn->prepare($sql);
 		$stmt->bind_param('s', $nome);
 		$stmt->execute();
@@ -57,7 +55,7 @@ Class Cidade extends conexao{
 		}
 	}
 	public function editar($nome, $id){
-		$sql = "UPDATE $this->tabela SET nome = ? WHERE id = ?;";
+		$sql = "UPDATE cidade SET nome = ? WHERE id = ?;";
 		$stmt = $this->conn->prepare($sql);
 		$stmt->bind_param('si',$nome,$id);
 		$stmt->execute();
@@ -71,7 +69,7 @@ Class Cidade extends conexao{
 	}
 
 	public function excluir($id){
-		$sql = "DELETE FROM $this->tabela WHERE id = ?";
+		$sql = "DELETE FROM cidade WHERE id = ?";
 		$stmt = $this->conn->prepare($sql);
 		$stmt->bind_param('i',$id);
 		$stmt->execute();

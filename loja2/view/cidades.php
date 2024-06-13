@@ -30,6 +30,8 @@ if (!isset($_SESSION['logado']) || $_SESSION == false){
         <tr>
             <th>Id</th>
             <th>Nome</th>
+            <th>Editar</th>
+            <th>Excluir</th>
         </tr> 
     
     <?php
@@ -47,7 +49,9 @@ if (!isset($_SESSION['logado']) || $_SESSION == false){
         }
     ?>
     </table>
-        
+    <br>
+    <a href="relatorioCidades.php" target="_blanck"><button>Gerar Relatório</button></a>
+    
     <?php
     if(isset($_GET["nomeVazio"])){
         echo "<script> alert('O campo nome não pode ser vazio!'); </script>";

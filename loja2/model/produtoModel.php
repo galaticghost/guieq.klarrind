@@ -5,6 +5,7 @@ class Produto extends Conexao /*implements ProdutoInterface*/{
     private $id;
     private $nome;
     private $valor;
+    private $descricao;
     
     public function __construct(){
         parent::__construct();
@@ -33,9 +34,17 @@ class Produto extends Conexao /*implements ProdutoInterface*/{
     public function setValor($valor){
         $this->valor = $valor;
     }
+    
+    public function getDescricao(){
+        return $this->descricao;
+    }
+    
+    public function setDescricao($descricao){
+        $this->descricao = $descricao;
+    }
 
     public function consulta(){
-        $sql = "SELECT id,nome,valor FROM produto";
+        $sql = "SELECT id,nome,valor,descricao FROM produto";
         $result = $this->conn->query($sql) or
         die("Falha na consulta");
         $this->conn->close();
@@ -45,7 +54,7 @@ class Produto extends Conexao /*implements ProdutoInterface*/{
     }
     
     public function consultarId($id){
-        $sql = "SELECT nome,valor FROM produto WHERE id = ?";
+        $sql = "SELECT nome,valor,descricao FROM produto WHERE id = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param('i',$id);
         $stmt->execute() or
@@ -58,10 +67,10 @@ class Produto extends Conexao /*implements ProdutoInterface*/{
         
     }
 
-    public function inserir($nome,$valor){
-        $sql = "INSERT INTO produto (nome,valor) VALUES (?,?)";
+    public function inserir($nome,$valor,$descricao){
+        $sql = "INSERT INTO produto (nome,valor,descricao) VALUES (?,?,?)";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param('sd',$nome,$valor);
+        $stmt->bind_param('sds',$nome,$valor,$descricao);
         $stmt->execute();
         $stmt->close();
         if ($stmt){
@@ -72,10 +81,10 @@ class Produto extends Conexao /*implements ProdutoInterface*/{
         }
     }
     
-    public function editar($nome,$valor,$id){
-        $sql = "UPDATE produto SET nome = ?, valor = ? WHERE id = ?";
+    public function editar($nome,$valor,$descricao,$id){
+        $sql = "UPDATE produto SET nome = ?, valor = ?, descricao = ? WHERE id = ?";
         $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param("sdi",$nome,$valor,$id);
+        $stmt->bind_param("sdsi",$nome,$valor,$descricao,$id);
         $stmt->execute();
         $stmt->close();
         if ($stmt){

@@ -49,6 +49,8 @@ if (!isset($_SESSION['logado']) || $_SESSION == false){
             <th>Data de nascimento</th>
             <th>Salario</th>
             <th>Cidade</th>
+            <th>Editar</th>
+            <th>Excluir</th>
         </tr> 
     
     <?php
