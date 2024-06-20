@@ -2,36 +2,55 @@
 
 title Sistema Bancário
 
-entity cliente {
-    *id: BIGINT NOT NULL AUTO_INCREMENT <<PK>>
+entity cliente #white;line.bold;line:Red{
+    *<color: Red>id: BIGINT NOT NULL AUTO_INCREMENT <<PK>>
     nome: VARCHAR[200] NOT NULL
     cpf: VARCHAR[20] NOT NULL
     dataDeNascimento: VARCHAR[20] NOT NULL
     telefone: VARCHAR[20] NOT NULL
-    --
-
+    endereco: TEXT
 }
 
-entity contaBancaria{
-    *id: BIGINT NOT NULL AUTO_INCREMENT
-    
+entity contaBancaria #white;line.bold;line:Green{
+    *<color: Green>id: BIGINT NOT NULL AUTO_INCREMENT <<PK>>
     tipo: VARCHAR[50] NOT NULL
+    saldo: DOUBLE NOT NULL
     --
-    id_cliente: BIGINT NOT NULL <<FK>>
+    <color: Red>id_cliente: BIGINT NOT NULL <<FK>>
 }
 
-entity agencia {
-    *id: BIGINT NOT NULL AUTO_INCREMENT
+entity banco #white;line.bold;line:DarkBlue{
+    *<color: DarkBlue>id: BIGINT NOT NULL AUTO_INCREMENT <<PK>>
+    nome: VARCHAR[100] NOT NULL
+    endereco: TEXT NOT NULL
+    cnpj: VARCHAR[20] NOT NULL
 }
 
-entity banco{
-    *id: BIGINT NOT NULL AUTO_INCREMENT
+entity transacao #white;line.bold;line:orange{
+    *<color: Orange>id: BIGINT NOT NULL AUTO_INCREMENT <<PK>>
+    tipo: VARCHAR[100] NOT NULL
+    quantia: DOUBLE NOT NULL
+    criado: DATE NOT NULL
+    --
+    <color: Red>id_cliente: BIGINT NOT NULL <<FK>>
+    <color: LightCoral>id_funcionario: BIGINT NOT NULL <<FK>>
 }
 
+entity funcionario #white;line.bold;line:LightCoral{
+    *<color: LightCoral>id: BIGINT NOT NULL AUTO_INCREMENT <<PK>>
+    nome: VARCHAR[200] NOT NULL
+    cpf: VARCHAR[20] NOT NULL
+    dataDeNascimento: VARCHAR[20] NOT NULL
+    telefone: VARCHAR[20] NOT NULL
+    endereco: TEXT
+    --
+    <color: DarkBlue>id_banco: BIGINT NOT NULL <<FK>>
+}
 
-cliente ||--|{ contaBancaria
-contaBancaria }|--|| agencia
-agencia }|--|| banco
+cliente ||-[#Red]-|{ contaBancaria
+cliente }|-[#red]-o{ transacao
+funcionario }|-[#LightCoral]-o{ transacao
+funcionario }|-up[#darkblue]-|| banco
 
 
 @enduml
