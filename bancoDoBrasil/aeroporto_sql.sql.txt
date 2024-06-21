@@ -1,0 +1,92 @@
+CREATE TABLE aeroporto (
+	id SERIAL PRIMARY KEY,
+	identificacao VARCHAR(100) NOT NULL,
+	nome VARCHAR(100) NOT NULL,
+	endereco TEXT NOT NULL
+);
+
+CREATE TABLE aeronave (
+	id SERIAL PRIMARY KEY,
+	numero CHAR(15) NOT NULL,
+	modelo VARCHAR(100) NOT NULL,
+	capacidade INT NOT NULL
+);
+
+CREATE TABLE pessoa (
+	id SERIAL PRIMARY KEY,
+	nome VARCHAR(100) NOT NULL,
+	cpf VARCHAR(11) NOT NULL,
+	rg VARCHAR(10) NOT NULL,
+	email TEXT NOT NULL
+);
+
+CREATE TABLE passageiro (
+	id SERIAL PRIMARY KEY,
+	data_nascimento DATE NOT NULL,
+	numero_passaporte CHAR(15) NOT NULL,
+	nacionalidade VARCHAR(200) NOT NULL,
+	id_pessoa BIGINT NOT NULL,
+	FOREIGN KEY (id_pessoa) REFERENCES pessoa (id)
+);
+
+CREATE TABLE funcionario (
+	id SERIAL PRIMARY KEY,
+	cargo VARCHAR(100) NOT NULL,
+	matricula VARCHAR(11) NOT NULL,
+	id_pessoa BIGINT NOT NULL,
+	FOREIGN KEY (id_pessoa) REFERENCES pessoa(id)
+);
+
+CREATE TABLE piloto (
+	id SERIAL PRIMARY KEY,
+	horas_voo INT NOT NULL,
+	numero_licenca VARCHAR(10) NOT NULL,
+	exame_saude TEXT NOT NULL,
+	id_funcionario BIGINT NOT NULL,
+	FOREIGN KEY (id_funcionario) REFERENCES pessoa(id)
+);
+
+CREATE TABLE voo (
+	id SERIAL PRIMARY KEY,
+	numero CHAR(10) NOT NULL,
+	hora_partida TIMESTAMP NOT NULL,
+	hora_chegada TIMESTAMP NOT NULL,
+	id_aeroporto_origem BIGINT NOT NULL,
+	id_aeroporto_destino BIGINT NOT NULL,
+	id_aeronave BIGINT NOT NULL,
+	id_piloto BIGINT NOT NULL,
+	FOREIGN KEY (id_aeroporto_origem) REFERENCES aeroporto(id),
+	FOREIGN KEY (id_aeroporto_destino) REFERENCES aeroporto(id),
+	FOREIGN KEY (id_aeronave) REFERENCES aeronave(id),
+	FOREIGN KEY (id_piloto) REFERENCES piloto(id)
+);
+
+CREATE TABLE compra (
+	id SERIAL PRIMARY KEY,
+	codigo CHAR(10) NOT NULL,
+	data_hora TIMESTAMP NOT NULL,
+	valor NUMERIC(10,5) NOT NULL,
+	id_passageiro BIGINT NOT NULL,
+	id_voo BIGINT NOT NULL,
+	FOREIGN KEY (id_passageiro) REFERENCES passageiro(id),
+	FOREIGN KEY (id_voo) REFERENCES voo(id)
+);
+
+CREATE TABLE assento (
+	id SERIAL PRIMARY KEY,
+	identificacao CHAR(10) NOT NULL,
+	tipo VARCHAR(50) NOT NULL,
+	status VARCHAR(50) NOT NULL,
+	id_aeronave BIGINT NOT NULL,
+	FOREIGN KEY (id_aeronave) REFERENCES aeronave(id)
+);
+
+CREATE TABLE checkin (
+	id SERIAL PRIMARY KEY,
+	contato_emergencia VARCHAR(150) NOT NULL,
+	telefone VARCHAR(50) NOT NULL,
+	id_compra BIGINT NOT NULL,
+	id_assento BIGINT NOT NULL,
+	FOREIGN KEY (id_compra) REFERENCES compra(id),
+	FOREIGN KEY (id_assento) REFERENCES assento(id)
+);
