@@ -25,7 +25,7 @@ class Usuario extends conexao {
     public function getAdmin(){
         return $this->admin;
     }
-    
+//id nome email senha admin
     public function logar($email,$senha){
         $sql = "SELECT nome,email,admin FROM usuario WHERE email = ? AND senha = ?;";
         $stmt = $this->conn->prepare($sql);
