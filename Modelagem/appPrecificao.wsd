@@ -1,0 +1,17 @@
+@startuml app Precificação
+title App Precificação Matéria Prima
+
+start
+repeat
+    :Adicionar matéria prima;
+repeat while (Adicionar outra?) is (sim)
+->não;
+:Calcular valor total matéria prima;
+:Adicionar embalagem por peça;
+:Adicionar cartões;
+:Adicionar etiquetas;
+:Adicionar frete por peça;
+:Adicionar outros;
+:Calcular valor total;
+stop
+@enduml

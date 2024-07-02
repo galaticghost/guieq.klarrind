@@ -1,59 +1,110 @@
-@startuml biblioteca
-title Biblioteca
+@startuml
 
-entity livro #white;line.bold;line:SteelBlue{
-    *<color: SteelBlue>isbn: VARCHAR[20] <<PK>> NOT NULL
-    titulo: VARCHAR[100] NOT NULL
-    genero: VARCHAR[255] NOT NULL
-    paginas: INT[5] NOT NULL
-    sinopse: TEXT NOT NULL
-    secao: VARCHAR[255] NOT NULL
-    ano: DATE NOT NULL
-    status: CHAR[1] NOT NULL
+entity perfil  #white;line.bold;line:blue {
+    *<color:blue>id BIGINT NOT NULL <<PK>>
+    <color:green>ativo BIGINT NOT NULL <<FK>>
     --
-    <color: SlateBlue>id_Autor: INT[10] <<FK>>
-    <color: Red>id_Editora: INT[10] <<FK>>
+    nome_perfil VARCHAR(200) NOT NULL
+    data_cadastro_perfil TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 }
 
-entity autor #white;line.bold;line:Slateblue{
-    *<color: SlateBlue>id: INT[10] <<PK>> NOT NULL AUTO_INCREMENT
-    nome: VARCHAR[255] NOT NULL
-    dataDeNascimento: DATE NOT NULL
+entity perfil_sessao  #white;line.bold; {
+    *id BIGINT NOT NULL <<PK>>
+    <color:blue>id_perfil BIGINT NOT NULL <<FK>>
+    <color:DarkCyan> BIGINT NOT NULL <<FK>>
 }
 
-entity editora #white;line.bold;line:Red{
-    *<color: Red>id: INT[10] <<PK>> NOT NULL AUTO_INCREMENT
-    nome: VARCHAR[255] NOT NULL
-    cnpj: VARCHAR[255] NOT NULL
-    endereco: TEXT NOT NULL
-}
-
-entity emprestimo #white;line.bold;line:Green{
-    *<color: Green>id: INT[10] <<PK>> NOT NULL AUTO_INCREMENT
-    dataDeRetirada: DATE NOT NULL
-    vencimento: DATE NOT NULL
+entity sessao #white;line.bold;line:DarkCyan {
+    <color:DarkCyan>*id BIGINT NOT NULL <<PK>>
     --
-    <color: Orange>id_Cliente INT [10] <<FK>>
-    <color: SteelBlue>isbn VARCHAR[20] <<FK>>
+    nome_sessao VARCHAR (255) NOT NULL
+    data_cadastro_sessao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 }
 
-entity cliente #White;line.bold;line:Orange{
-    *<color: Orange>id: INT[10] <<PK>> NOT NULL AUTO_INCREMENT
-    nome: VARCHAR[255] NOT NULL
-    cpf: VARCHAR[20] NOT NULL
+entity ativo #white;line.bold;line:green {
+    <color:green>*id BIGINT NOT NULL <<PK>>
+    status VARCHAR(20) NOT NULL
 }
 
-entity biblioteca #white;line.bold;line:Black{
-    *<color: Black>id: INT[10] <<PK>> NOT NULL AUTO_INCREMENT
-    nome: VARCHAR[100] NOT NULL
-    endereco: TEXT NOT NULL
-    telefone: VARCHAR[20] NOT NULL
-
+entity usuario  #white;line.bold;line:red {
+    <color:red>*id BIGINT NOT NULL <<PK>>
+    <color:blue>id_perfil BIGINT NOT NULL <<FK>>
+    <color:green>ativo BIGINT NOT NULL <<FK>>
+    --
+    nome_usuario VARCHAR (200) NOT NULL
+    email_usuario VARCHAR(200) NOT NULL
+    login_usuario VARCHAR(200) NOT NULL
+    senha_usuario VARCHAR(200) NOT NULL
+    data_cadastro_usuario TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 }
 
-livro }|-[#SlateBlue]up-|{ autor
-livro }|-[#Red]-o{ editora
-livro ||-[#SteelBlue]-o| emprestimo
-cliente ||-[#Orange]-o{ emprestimo
-biblioteca ||--|{ emprestimo
+entity credor #white;line.bold;line:Orange {
+    <color:Orange>*id BIGINT NOT NULL <<PK>>
+    <color:red>id_usuario BIGINT NOT NULL <<FK>>
+    <color:green>ativo BIGINT NOT NULL <<FK>>
+    --
+    nome_credor VARCHAR(200) NOT NULL
+    data_cadastro_credor TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    telefone_credor VARCHAR(40) NOT NULL
+    celular_credor VARCHAR(40) NOT NULL 
+}
+
+entity despesa #white;line.bold;line:purple {
+    <color:purple>*id BIGINT NOT NULL <<PK>>
+    <color:Orange>id_credor BIGINT NOT NULL <<FK>>
+    <color:red>id_usuario BIGINT NOT NULL <<FK>>
+    <color:green>ativo BIGINT NOT NULL <<FK>>
+    --
+    nome_despesa VARCHAR(100) NOT NULL
+    data_cadastro_despesa TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+}
+
+entity base #white;line.bold;line:Aqua {
+    <color:Aqua>*id BIGINT NOT NULL <<PK>>
+    <color:red>id_usuario BIGINT NOT NULL <<FK>>
+    <color:green>ativo BIGINT NOT NULL <<FK>>
+    --
+    nome_base VARCHAR(100) NOT NULL
+    data_cadastro_base TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    responsavel_base VARCHAR(100) NOT NULL
+    telefone_base VARCHAR(40) NOT NULL
+    celular_base VARCHAR(40) NOT NULL
+    email_base VARCHAR(200) NOT NULL
+}
+
+entity lancamento  #white;line.bold;line:LightCoral  {
+    <color:LightCoral>*id BIGINT NOT NULL <<PK>>
+    <color:Aqua>id_base BIGINT NOT NULL <<FK>>
+    <color:red>id_usuario BIGINT NOT NULL <<FK>>
+    <color:Purple>id_despesa BIGINT NOT NULL <<FK>>
+    <color:green>ativo BIGINT NOT NULL <<FK>>
+    --
+    competencia_despencia CHAR(2) NOT NULL
+    data_vencimento DATE NOT NULL
+    valor_liquido DOUBLE NOT NULL
+    valor_multa DOUBLE NOT NULL
+    valor_correcao DOUBLE NOT NULL
+    data_cadastro_lancamento TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    observacao TEXT
+}
+
+perfil ||-[#blue]-|{ usuario
+perfil ||-[#blue]-|{ perfil_sessao
+sessao ||--|{ perfil_sessao
+credor }|-[#red]-|| usuario
+base ||-[#red]-|{ usuario
+lancamento }|-[#red]-|| usuario
+lancamento }|-[#Aqua]-|| base
+lancamento }|-[#purple]-|| despesa
+credor ||-[#Orange]-|{ despesa
+usuario ||-[#red]-|{ despesa
+
+ativo ||-down[#green]-|| perfil
+ativo ||-[#green]-|| usuario
+ativo ||-[#green]-|| lancamento
+ativo ||-[#green]-|| base
+ativo ||-[#green]-|| despesa
+ativo ||-[#green]-|| credor
+
+
 @enduml

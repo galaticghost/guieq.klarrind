@@ -1,0 +1,20 @@
+@startuml Custos Fixos
+title Custos Fixos
+
+start
+:Adicionar aluguel;
+:Adicionar água;
+:Adicionar luz;
+:Adicionar telefone;
+:Adicionar internet;
+:Adicionar iptu;
+repeat
+    :Adcionar outros;
+repeat while (Adicionar mais?) is (sim)
+->não;
+:Calcular total;
+:Adicionar peças produzidas por mês;
+:Calcular valor total;
+stop
+
+@enduml
