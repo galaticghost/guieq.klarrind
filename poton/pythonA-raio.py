@@ -7,3 +7,4 @@ for bola in bolas:
     print(bola)
 
 xiname = array.array('u',['B'])
+print(xiname[0])
